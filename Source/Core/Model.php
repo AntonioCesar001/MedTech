@@ -82,7 +82,6 @@ abstract class Model
     {
         return ($this->message ?? null);
     }
-
     /**
      * Obtém o tipo da mensagem
      * 

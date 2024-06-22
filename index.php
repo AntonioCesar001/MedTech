@@ -46,11 +46,11 @@ switch ($c) {
                 break;
             case 'registro':
                 $controller = new Usuario();
-                include $controller->ViewSignIn();
+                include $controller->viewSignIn();
                 break;
             case 'main':
                 $controller = new Usuario();
-                include $controller->ViewMain();
+                include $controller->viewMain();
                 break;
         }
         break;
@@ -153,10 +153,10 @@ switch ($c) {
     default:
         if (isset($_SESSION['usuario'])) {
             $controller = new Usuario();
-            include $controller->ViewMain();
+            include $controller->viewMain();
         } else {
             $controller = new Usuario();
-            include $controller->ViewLogIn();
+            include $controller->viewLogIn();
         }
         break;
 }

@@ -87,7 +87,6 @@ class UsuarioModel extends Model
             if (!$this->VerifyByEmail($this->data->email)) {
                 return null;
             }
-            var_dump($this->data->nome);
             // Prepara a query de inserção do registro
             $query = "INSERT INTO " . self::$entity . " ("
                 . "nome,"
@@ -113,8 +112,8 @@ class UsuarioModel extends Model
             //caso falhe armazenna a mensagem e retorna null.
             if ($idUsuario) {
                 $this->typeMessage = "sucess";
-                $this->data->idUsuario = $idUsuario;
                 $this->message = "Dados inseridos com sucesso!";
+                $this->data->idUsuario = $idUsuario;
             } else {
                 $this->typeMessage = "error";
                 $this->message = "Ooops algo deu errado!";

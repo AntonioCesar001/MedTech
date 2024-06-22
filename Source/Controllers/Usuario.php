@@ -1,8 +1,9 @@
-<?php 
+<?php
 namespace Source\Controllers;
+
 use Source\Models\UsuarioModel;
 
-ini_set("display_errors",1);
+ini_set("display_errors", 1);
 
 /**
  * A classe Usuario é responsável por representar
@@ -11,7 +12,7 @@ ini_set("display_errors",1);
  * @author Antonio César <antonio.magalhaes@ba.estudante.senai.br>
  */
 
-class Usuario 
+class Usuario
 {
   /**
    * A variável foi craida com intuito de representar o usuário 
@@ -19,7 +20,7 @@ class Usuario
    */
   private $usuario;
 
-  public function __construct() 
+  public function __construct()
   {
     $this->usuario = new UsuarioModel();
   }
@@ -29,7 +30,7 @@ class Usuario
    * 
    * @return string O caminho da pagina de login
    */
-  public function ViewLogIn()
+  public function viewLogIn()
   {
     //Retorna para tela de login principal do site...
     return "tema/admin/pages/login.php";
@@ -40,7 +41,7 @@ class Usuario
    * 
    * @return string O caminho da página de regitro
    */
-  public function ViewSignIn()
+  public function viewSignIn()
   {
     //Retorna para tela de registro do site...
     return "tema/admin/pages/register.php";
@@ -51,16 +52,16 @@ class Usuario
    * 
    * @return string O caminho da página principal caso tenha sessão, caso não retorna a tela de login
    */
-  public function ViewMain ()
+  public function viewMain()
   {
     //Verifica se existe uma sessão ativa, caso tenha retorna
     //a tela principal
     if (isset($_SESSION['usuario'])) {
       //retorna o caminho da tela principal
       return "tema/admin/pages/main.php";
-    } 
+    }
     //Caminho da tela de login
-    return $this->ViewLogIn();
+    return $this->viewLogIn();
   }
   /**
    * A função foi criada com o intuito de autenticar os dados 
@@ -71,7 +72,7 @@ class Usuario
    * dados não tenham sido inseridos corretamente , retorna 
    * ao controle de dados com uma mensagem de falha.
    */
-  public function login(string $email, string $senha , $remember = null)
+  public function login(string $email, string $senha, $remember = null)
   {
     //Busca o email inserido e retorna o objeto Usuário que tem
     //aquele email inserido
@@ -95,7 +96,7 @@ class Usuario
         //Verifica se a caixa remember está ativada
         if ($rememberTeste) {
           //Define o cookie para lembrar do email por 1 dia 
-          setcookie('rememberme',$email , time() + (1*24*60*60),"/");
+          setcookie('rememberme', $email, time() + (1 * 24 * 60 * 60), "/");
         }
         //Retorna ao controle de fluxo de dados so sistema
         header('location: index.php?c=usuario&a=main');
@@ -121,10 +122,10 @@ class Usuario
     //apaga o cookie rememberme e apaga a sessão, caso não tenha , ele 
     //apaga somente a sessão. 
     //OBS:Ambos retornam para a tela principal com mensagem
-    
+
     if (isset($_COOKIE["rememberme"])) {
       //Define o cookie para expirar no passado
-      setcookie('rememberme',"", time() -3600,"/");
+      setcookie('rememberme', "", time() - 3600, "/");
       //Apaga as sessões
       session_unset();
       session_destroy();
@@ -161,8 +162,16 @@ class Usuario
     if ($this->usuario->getFail()) {
       echo "Falha ao cadastrar";
     } else {
-      //Retorna a mensagem de falha e o tipo da mensagem
-      header("location: index.php?c=usuario&a=registro&message={$this->usuario->getMessage()}&typeMessage={$this->usuario->getTypeMessage()}");
+      //Verifica se o usuário conseguiu se cadastrar com sucesso ,
+      //caso tenha conseguido ele retorna a tela de login ,
+      //caso não ele retorna a tela de cadastro com a falha.
+      if ($this->usuario->getTypeMessage() === "sucess") {
+        //Retorna a mensagem de sucesso e o tipo da mensagem
+        header("location: index.php?message={$this->usuario->getMessage()}&typeMessage={$this->usuario->getTypeMessage()}");
+      } else {
+        //Retorna a mensagem de falha e o tipo da mensagem
+        header("location: index.php?c=usuario&a=registro&message={$this->usuario->getMessage()}&typeMessage={$this->usuario->getTypeMessage()}");
+      }
     }
     return true;
   }
