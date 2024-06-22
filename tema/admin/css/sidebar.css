@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+}
+
+.main-sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #343a40; /* Cor de fundo do sidebar */
+    color: #ffffff; /* Cor do texto do sidebar */
+    font-size: 0.9rem; /* Tamanho da fonte */
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 300;
+    height: 3.5rem;
+    color: #ffffff; /* Cor do texto do logo */
+    text-decoration: none;
+    background-color: #4CAF50; /* Cor de fundo do logo */
+    margin-bottom: 1rem;
+}
+
+.brand-image {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 0.5rem;
+}
+
+.user-panel {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.user-panel .image {
+    margin-right: 0.5rem;
+}
+
+.user-panel img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+
+.user-panel .info a {
+    color: #ffffff; /* Cor do texto do usuário */
+    text-decoration: none;
+}
+
+.sidebar-search {
+    padding: 0.5rem;
+}
+
+.sidebar-search .form-control {
+    border-radius: 0.25rem;
+    background-color: #495057; /* Cor de fundo do campo de busca */
+    color: #ffffff; /* Cor do texto do campo de busca */
+    border: none;
+}
+
+.sidebar-search .btn-sidebar {
+    background-color: #4CAF50; /* Cor de fundo do botão de busca */
+    border: none;
+    color: #ffffff; /* Cor do texto do botão de busca */
+}
+
+.nav-sidebar .nav-item {
+    margin-bottom: 0.5rem;
+}
+
+.nav-sidebar .nav-link {
+    color: #c2c7d0; /* Cor do texto dos itens de menu */
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+}
+
+.nav-sidebar .nav-link:hover {
+    background-color: #4CAF50; /* Cor de fundo ao passar o mouse */
+    color: #ffffff; /* Cor do texto ao passar o mouse */
+}
+
+.nav-sidebar .nav-link.active {
+    background-color: #4CAF50; /* Cor de fundo do item ativo */
+    color: #ffffff; /* Cor do texto do item ativo */
+}
+
+.nav-sidebar .nav-link .nav-icon {
+    margin-right: 0.5rem;
+}
+
+.nav-treeview .nav-item .nav-link {
+    padding-left: 2rem;
+}
