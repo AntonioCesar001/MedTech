@@ -364,4 +364,39 @@ class PlantaoModel extends Model
         return $findByScale->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
 
+    public function relatorio(): ?array
+    {
+        // Prepara a query de seleção de todos os registros com aquele
+        $sql = "SELECT "
+                . "d.nome , d.idUnidade , d.idDepartamento , d.alta_prevista , d.admissao , "
+                . "d.procedimentos_realizados , d.numero_obito , d.leito_ocupado , p.idPlantao , p.enfermeiro , "
+                . "p.falta_enfermeiro , p.dobra_enfermeiro , p.tecnico , p.falta_tecnico , "
+                . "p.dobra_tecnico , p.dobra_tecnico , p.func_remanejado , p.medico_plantonista , p.presentes "
+            . "FROM "
+                . "plantao as p "
+            . "INNER JOIN "
+            .     "departamento as d ON p.idDepartamento = d.idDepartamento "
+            . "ORDER BY "
+            .     "d.idDepartamento";
+
+        // Executa a query de seleção de todos os registros
+        $relatorio = $this->read($sql);
+
+        // Se houver falhas ou não tiver registros na tabela, retorna null.
+        if ($this->getFail()) {
+            $this->typeMessage = "error";
+            $this->message = "Ooops algo deu errado!";
+            return null;
+        }
+        if (!$relatorio->rowCount()) {
+            $this->typeMessage = "warning";
+            $this->message = "Nenhuma relatório foi encontrado relacionado a esse plantão!";
+            return null;
+        }
+        $this->typeMessage = "sucess";
+        $this->message = "A consulta foi feita com sucesso!";
+        // Retorna os registros da tabela
+        return $relatorio->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
+    }
+
 }

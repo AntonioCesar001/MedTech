@@ -1,4 +1,5 @@
 <?php
+use Source\Controllers\Relatorio;
 
 /**
  * @version ${1:2.1.1
@@ -146,6 +147,21 @@ switch ($c) {
                 break;
             case 'lista':
                 $controller = new Escala();
+                $controller->listAll();
+                break;
+        }
+    case 'relatorio':
+        switch ($a) {
+            case 'cadastro':
+                $controller = new Relatorio();
+                $controller->registration($_POST['idDepartamento'], $_POST['idUnidade'], $_POST['turno'], $_POST['data_escala']);
+                break;
+            case 'registro':
+                $controller = new Relatorio();
+                include $controller->viewRegister();
+                break;
+            case 'lista':
+                $controller = new Relatorio();
                 $controller->listAll();
                 break;
         }

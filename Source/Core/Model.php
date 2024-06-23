@@ -27,7 +27,7 @@ abstract class Model
      * @var \PDOException
      * O PDOException é uma classe de exceção em PHP que representa os erros relacionados ao PDO.
      */
-     protected $fail;
+    protected $fail;
     /** 
      *  A variável foi criada com o objetivo de armazenar mensagens.
      * 
@@ -91,8 +91,6 @@ abstract class Model
     {
         return ($this->typeMessage ?? null);
     }
-
-
     /**
      * Verifica se uma string é uma data válida.
      *

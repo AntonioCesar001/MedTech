@@ -5,7 +5,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
     <!-- Right navbar links -->
@@ -48,13 +48,13 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Menu Items -->
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Relatório <i class="right fas fa-angle-left"></i></p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="index.php?c=relatorio&a=registro" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Criar relatório</p>
                                 </a>
@@ -69,7 +69,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="nav-icon fas fa-building"></i>
                             <p>Unidade <i class="right fas fa-angle-left"></i></p>
                         </a>
@@ -96,7 +96,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="index.php?c=departamento&a=registro" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Cadastrar departamento</p>
                                 </a>
@@ -111,7 +111,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Funcionário <i class="right fas fa-angle-left"></i></p>
                         </a>
@@ -132,13 +132,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="nav-icon fas fa-calendar-alt"></i>
                             <p>Plantão <i class="right fas fa-angle-left"></i></p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="index.php?c=plantao&a=registro" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Cadastrar plantão</p>
                                 </a>
@@ -153,13 +153,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="nav-icon fas fa-tasks"></i>
                             <p>Escala <i class="right fas fa-angle-left"></i></p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="index.php?c=escala&a=registro" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Cadastrar escala</p>
                                 </a>

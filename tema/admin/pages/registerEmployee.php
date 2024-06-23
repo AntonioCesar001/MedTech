@@ -65,7 +65,8 @@
                             <!-- Filtro de Pesquisa -->
                             <div class="form-group">
                                 <label for="search-funcionario">Pesquisar</label>
-                                <input type="text" class="form-control" id="search-funcionario" placeholder="Nome ou Especialidade">
+                                <input type="text" class="form-control" id="search-funcionario"
+                                    placeholder="Nome ou Especialidade">
                             </div>
 
                             <table class="table table-bordered">
@@ -81,27 +82,26 @@
                                     <!-- Dados dos funcionários serão carregados aqui -->
                                     <!-- Exemplo de um funcionário -->
                                     <?php
-                                //session_start();
-                                if (isset($_SESSION['funcionario'])) {
-                                    $a = $_SESSION['funcionario'];
-                                    foreach ($a as $row) {
-                                        $row = serialize($row);
-                                        $row = unserialize($row);
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $row->nome; ?></td>
-                                            <td><?php echo $row->especialidade; ?></td>
-                                            <td><?php echo $row->cargaHoraria; ?></td>
-                                            <td>
-                                            <button class="btn btn-info btn-sm"
-                                                onclick="visualizarFuncionario('Funcionário A')">Visualizar</button>
-                                            <button class="btn btn-warning btn-sm"
-                                                onclick="editarFuncionario('Funcionário A')">Editar</button>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
-                                } ?>
+                                    if (isset($_SESSION['funcionario'])) {
+                                        $a = $_SESSION['funcionario'];
+                                        foreach ($a as $row) {
+                                            $row = serialize($row);
+                                            $row = unserialize($row);
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row->nome; ?></td>
+                                                <td><?php echo $row->especialidade; ?></td>
+                                                <td><?php echo $row->cargaHoraria; ?></td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm"
+                                                        onclick="visualizarFuncionario('Funcionário A')">Visualizar</button>
+                                                    <button class="btn btn-warning btn-sm"
+                                                        onclick="editarFuncionario('Funcionário A')">Editar</button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } ?>
                                 </tbody>
                             </table>
                             <button class="btn" data-toggle="modal" data-target="#funcionarioModal">Adicionar
@@ -128,8 +128,7 @@
                         <form action="index.php?c=funcionario&a=cadastro" method="post" id="form-funcionario">
                             <div class="form-group">
                                 <label for="nome_completo">Nome Completo</label>
-                                <input type="text" class="form-control" id="nome_completo" name="nome"
-                                    required>
+                                <input type="text" class="form-control" id="nome_completo" name="nome" required>
                             </div>
                             <div class="form-group">
                                 <label for="especialidade">Especialidade</label>
@@ -146,8 +145,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="carga_horaria">Carga Horária</label>
-                                <input type="text" class="form-control" id="carga_horaria" name="cargaHoraria"
-                                    required>
+                                <input type="text" class="form-control" id="carga_horaria" name="cargaHoraria" required>
                             </div>
                             <button type="submit" class="btn">Salvar</button>
                         </form>
@@ -221,4 +219,5 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="tema/admin/dist/js/pages/dashboard.js"></script>
 </body>
+
 </html>
