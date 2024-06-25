@@ -60,7 +60,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="index.php?c=relatorio&a=visualizar" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Visualizar relatórios</p>
                                 </a>
@@ -81,7 +81,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="index.php?c=unidade&a=visualizar" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Visualizar unidades</p>
                                 </a>
@@ -102,7 +102,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="index.php?c=departamento&a=visualizar" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Visualizar departamentos</p>
                                 </a>
@@ -123,7 +123,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="index.php?c=funcionario&a=visualizar" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Visualizar funcionários</p>
                                 </a>
@@ -144,7 +144,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="index.php?c=plantao&a=visualizar" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Visualizar plantões</p>
                                 </a>
@@ -165,7 +165,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="index.php?c=escala&a=visualizar" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Visualizar escalas</p>
                                 </a>

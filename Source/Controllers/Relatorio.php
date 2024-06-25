@@ -46,13 +46,16 @@ class Relatorio
   {
     //Verifica se a sessão da relatorio existe , se não existir ela 
     //retorna a função lista 
-    if (!isset($_SESSION['relatorio']) || empty($_SESSION['contador'])) {
+    if (isset($_SESSION['usuario'])) {
+      if (!isset($_SESSION['relatorio']) || empty($_SESSION['contador'])) {
+        $_SESSION['contador'] = false;
+        return $this->listAll();
+      }
       $_SESSION['contador'] = false;
-      return $this->listAll();
+      //Retorna para tela de registro do site...
+      return "tema/admin/pages/registerReport.php";
     }
-    $_SESSION['contador'] = false;
-    //Retorna para tela de registro do site...
-    return "tema/admin/pages/index10.php";
+    return "tema/admin/pages/login.php";
   }
   /**
    * A função foi criada com intuito de realizar um cadastro
@@ -70,23 +73,8 @@ class Relatorio
     null|string $falta,
     null|string $func_remanejado,
     null|string $dobra,
-    null|string $prescritor,
-    null|int $nome_departamento,
-    null|int $numero_leito,
-    null|int $alta_prevista,
-    null|int $leito_ocupado,
-    null|int $numero_obito
+    null|string $prescritor
   ) {
-    //Salvar no banco de dados os valores recebidos
-    $this->departamento->idUnidade = $idUnidade;
-    $this->departamento->idDepartamento = $idDepartamento;
-    $this->departamento->nome = $nome_departamento;
-    $this->departamento->numero_leito = $numero_leito;
-    $this->departamento->alta_prevista = $alta_prevista;
-    $this->departamento->leito_ocupado = $leito_ocupado;
-    $this->departamento->numero_obito = $numero_obito;
-
-
 
     $this->plantao->idEscala = $idEscala;
     $this->plantao->idDepartamento = $idDepartamento;
@@ -96,17 +84,16 @@ class Relatorio
     $this->plantao->dobra = $dobra;
     $this->plantao->prescritor = $prescritor;
 
-    $this->departamento->save();
     $this->plantao->save();
 
     //Verifica se houve uma falha ou se teve algum tipo de 
     //erro de inserção dos valores da parte do relatorio
-    if ($this->departamento->getFail() || $this->plantao->getFail()) {
+    if ($this->plantao->getFail() || $this->plantao->getFail()) {
       echo "Falha ao cadastrar";
     } else {
       //pensar sobre get message
       //Retorna a mensagem de falha e o tipo da mensagem
-      header("location: index.php?c=relatorio&a=registro&message={$this->relatorio->getMessage()}&typeMessage={$this->relatorio->getTypeMessage()}");
+      header("location: index.php?c=relatorio&a=registro&message={$this->plantao->getMessage()}&typeMessage={$this->plantao->getTypeMessage()}");
     }
     return true;
   }
@@ -116,18 +103,31 @@ class Relatorio
     //Se houver sessão de usuario faz uma sessão de relatorio 
     //para armazenar a lista de relatorios cadastrados
     if ($_SESSION['usuario']) {
-
-      $array = $this->plantao->relatorio();
-
+      $array = $this->plantao->registerReport();
       foreach ($array as $key => $value) {
         $this->relatorio->$key = $value;
       }
       $_SESSION['relatorio'] = $this->relatorio;
+    }
+    if ($_SESSION['contador']) {
+      return $this->viewAll();
     }
     if (isset($_SESSION['contador'])) {
       $_SESSION['contador'] = true;
     }
     //Retorna a tela de registro 
     return $this->viewRegister();
+  }
+
+  public function viewAll()
+  {
+    if (isset($_SESSION['usuario'])) {
+      if (!isset($_SESSION['relatorio']) || empty($_SESSION['contador'])) {
+        $_SESSION['contador'] = true;
+        return $this->listAll();
+      }
+      return "tema/admin/pages/viewReport.php";
+    }
+    return "tema/admin/pages/login.php";
   }
 }

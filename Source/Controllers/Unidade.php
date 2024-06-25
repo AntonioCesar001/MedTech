@@ -1,8 +1,9 @@
 <?php
 namespace Source\Controllers;
+
 use Source\Models\UnidadeModel;
 
-ini_set("display_errors",1);
+ini_set("display_errors", 1);
 
 /**
  * A classe Unidade é responsável por representar
@@ -11,7 +12,7 @@ ini_set("display_errors",1);
  * @author Antonio César <antonio.magalhaes@ba.estudante.senai.br>
  */
 
-class Unidade 
+class Unidade
 {
   /**
    * A variável foi craida com intuito de representar o usuário 
@@ -19,7 +20,7 @@ class Unidade
    */
   private $unidade;
 
-  public function __construct() 
+  public function __construct()
   {
     $this->unidade = new UnidadeModel();
   }
@@ -33,13 +34,16 @@ class Unidade
   {
     //Verifica se a sessão da unidade existe , se não existir ela 
     //retorna a função lista 
-    if (!isset($_SESSION['unidade']) || empty($_SESSION['contador'])){
+    if (isset($_SESSION['usuario'])) {
+      if (!isset($_SESSION['unidade']) || empty($_SESSION['contador'])) {
+        $_SESSION['contador'] = false;
+        return $this->listAll();
+      }
       $_SESSION['contador'] = false;
-      return $this->listAll();
+      //Retorna para tela de registro do site...
+      return "tema/admin/pages/registerUnit.php";
     }
-    $_SESSION['contador'] = false;
-    //Retorna para tela de registro do site...
-    return "tema/admin/pages/registerUnit.php";
+    return "tema/admin/pages/login.php";
   }
   /**
    * A função foi criada com intuito de realizar um cadastro
@@ -78,10 +82,25 @@ class Unidade
       $list = $this->unidade->all();
       $_SESSION['unidade'] = $list;
     }
+    if ($_SESSION['contador']) {
+      return $this->viewAll();
+    }
     if (isset($_SESSION['contador'])) {
       $_SESSION['contador'] = true;
     }
     //Retorna a tela de registro 
     return $this->viewRegister();
+  }
+
+  public function viewAll()
+  {
+    if (isset($_SESSION['usuario'])) {
+      if (!isset($_SESSION['unidade']) || empty($_SESSION['contador'])) {
+        $_SESSION['contador'] = true;
+        return $this->listAll();
+      }
+      return "tema/admin/pages/viewUnit.php";
+    }
+    return "tema/admin/pages/login.php";
   }
 }

@@ -27,7 +27,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="tema/admin/plugins/summernote/summernote-bs4.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="tema/admin/css/styles.css"> !-->
+    <link rel="stylesheet" href="tema/admin/css/styles.css"> 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -151,6 +151,9 @@
     </footer>
 
 
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="tema/admin/dist/js/scripts.js"></script>
@@ -168,6 +171,7 @@
     <script src="tema/admin/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
     <script src="tema/admin/plugins/sparklines/sparkline.js"></script>
+    <!-- </div> -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="scripts.js"></script>

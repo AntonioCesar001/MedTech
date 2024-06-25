@@ -2,6 +2,9 @@
 namespace Source\Controllers;
 
 use Source\Models\UsuarioModel;
+use Source\Models\DepartamentoModel;
+use Source\Models\FuncionarioModel;
+use Source\Models\PlantaoModel;
 
 ini_set("display_errors", 1);
 
@@ -19,10 +22,17 @@ class Usuario
    * do banco e facilitar o controle de dados do site...
    */
   private $usuario;
-
+  private $departamento;
+  private $funcionario;
+  private $plantao;
+  private $main;
   public function __construct()
   {
     $this->usuario = new UsuarioModel();
+    $this->departamento = new DepartamentoModel();
+    $this->funcionario = new FuncionarioModel();
+    $this->plantao = new PlantaoModel();
+    $this->main = new \stdClass();
   }
   /**
    * A função foi criada com intuito de retornar a tela 
@@ -57,9 +67,14 @@ class Usuario
     //Verifica se existe uma sessão ativa, caso tenha retorna
     //a tela principal
     if (isset($_SESSION['usuario'])) {
-      //retorna o caminho da tela principal
+      if (empty($_SESSION['contador']) || !isset($_SESSION['main'])) {
+        $_SESSION['contador'] = false;
+        return $this->main();
+      }
+      $_SESSION['contador'] = false;
       return "tema/admin/pages/main.php";
     }
+    //retorna o caminho da tela principal
     //Caminho da tela de login
     return $this->viewLogIn();
   }
@@ -174,5 +189,29 @@ class Usuario
       }
     }
     return true;
+  }
+  public function main()
+  {
+    if ($_SESSION['usuario']) {
+      $qtyEmployee = $this->funcionario->countEmployee();
+      $qtyDepartments = $this->departamento->countDepartments();
+      $qtyReport = $this->plantao->countReport();
+
+      // Armazene os objetos na sessão
+      $teste = array(
+        'funcionario' => $qtyEmployee,
+        'departamento' => $qtyDepartments,
+        'relatorio' => $qtyReport
+      );
+
+      foreach ($teste as $key => $value) {
+        $this->main->$key = $value;
+      }
+      $_SESSION['main'] = $this->main;
+    }
+    if (isset($_SESSION['contador'])) {
+      $_SESSION['contador'] = true;
+    }
+    return $this->viewMain();
   }
 }

@@ -546,4 +546,32 @@ class FuncionarioModel extends Model
         }
         return true;
     }
+
+    public function countEmployee(): ?FuncionarioModel
+    {
+        // Prepara a query de seleção de todos os registros com aquele
+        $sql = "SELECT "
+        .   "count(idFuncionario) AS qtd_funcionarios "
+        .   "FROM " 
+        .   "funcionario";
+
+        // Executa a query de seleção de todos os registros
+        $findById = $this->read($sql);
+
+        // Se houver falhas ou não tiver registros na tabela, retorna null.
+        if ($this->getFail()) {
+            $this->typeMessage = "error";
+            $this->message = "Ooops algo deu errado!";
+            return null;
+        }
+        if (!$findById->rowCount()) {
+            $this->typeMessage = "warning";
+            $this->message = "Nenhum departamento foi encontrado!";
+            return null;
+        }
+        $this->typeMessage = "sucess";
+        $this->message = "A consulta foi feita com sucesso!";
+        // Retorna os registros da tabela
+        return $findById->fetchObject(__CLASS__);
+    }
 }

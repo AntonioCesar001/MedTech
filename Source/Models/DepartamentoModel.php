@@ -267,4 +267,36 @@ class DepartamentoModel extends Model
         // Retorna os registros da tabela
         return $findByIdUnit->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
+
+    public function countDepartments(): ?DepartamentoModel
+    {
+        // Prepara a query de seleção de todos os registros com aquele
+        $sql = "SELECT "
+        .   "count(idDepartamento) AS total_departamentos,"
+        .   "SUM(numero_leito) AS numero_leitos,"
+        .   "SUM(leito_ocupado) AS leitos_ocupados,"
+        .   "(SUM(numero_leito) - SUM(leito_ocupado)) AS qtd_leitos_livres "
+        .   "FROM " 
+        .   "departamento";
+
+        // Executa a query de seleção de todos os registros
+        $findById = $this->read($sql);
+
+        // Se houver falhas ou não tiver registros na tabela, retorna null.
+        if ($this->getFail()) {
+            $this->typeMessage = "error";
+            $this->message = "Ooops algo deu errado!";
+            return null;
+        }
+        if (!$findById->rowCount()) {
+            $this->typeMessage = "warning";
+            $this->message = "Nenhum departamento foi encontrado!";
+            return null;
+        }
+        $this->typeMessage = "sucess";
+        $this->message = "A consulta foi feita com sucesso!";
+        // Retorna os registros da tabela
+        return $findById->fetchObject(__CLASS__);
+
+    }
 }

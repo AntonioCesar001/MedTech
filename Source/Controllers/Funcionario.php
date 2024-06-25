@@ -1,8 +1,9 @@
 <?php
 namespace Source\Controllers;
+
 use Source\Models\FuncionarioModel;
 
-ini_set("display_errors",1);
+ini_set("display_errors", 1);
 
 /**
  * A classe Funcionario é responsável por representar
@@ -11,7 +12,7 @@ ini_set("display_errors",1);
  * @author Antonio César <antonio.magalhaes@ba.estudante.senai.br>
  */
 
-class Funcionario 
+class Funcionario
 {
   /**
    * A variável foi craida com intuito de representar o funcionario 
@@ -19,7 +20,7 @@ class Funcionario
    */
   private $funcionario;
 
-  public function __construct() 
+  public function __construct()
   {
     $this->funcionario = new FuncionarioModel();
   }
@@ -33,13 +34,16 @@ class Funcionario
   {
     //Verifica se a sessão da Funcionario existe , se não existir ela 
     //retorna a função lista 
-    if (!isset($_SESSION['funcionario']) || empty($_SESSION['contador'])){
+    if (isset($_SESSION['usuario'])) {
+      if (!isset($_SESSION['funcionario']) || empty($_SESSION['contador'])) {
+        $_SESSION['contador'] = false;
+        return $this->listAll();
+      }
       $_SESSION['contador'] = false;
-      return $this->listAll();
+      //Retorna para tela de registro do site...
+      return "tema/admin/pages/registerEmployee.php";
     }
-    $_SESSION['contador'] = false;
-    //Retorna para tela de registro do site...
-    return "tema/admin/pages/registerEmployee.php";
+    return "tema/admin/pages/login.php";
   }
   /**
    * A função foi criada com intuito de realizar um cadastro
@@ -50,7 +54,7 @@ class Funcionario
    * principal de login , com a mensagem de erro e o tipo da 
    * mensagem na url 
    */
-  public function registration(string $nome, string $especialidade, string $matricula, string $cpf , string $cargaHoraria)
+  public function registration(string $nome, string $especialidade, string $matricula, string $cpf, string $cargaHoraria)
   {
     //Salvar no banco de dados os valores recebidos
     $this->funcionario->nome = $nome;
@@ -84,10 +88,25 @@ class Funcionario
       $list = $this->funcionario->all();
       $_SESSION['funcionario'] = $list;
     }
+    if ($_SESSION['contador']) {
+      return $this->viewAll();
+    }
     if (isset($_SESSION['contador'])) {
       $_SESSION['contador'] = true;
     }
     //Retorna a tela de registro 
     return $this->viewRegister();
+  }
+
+  public function viewAll()
+  {
+    if (isset($_SESSION['usuario'])) {
+      if (!isset($_SESSION['funcionario']) || empty($_SESSION['contador'])) {
+        $_SESSION['contador'] = true;
+        return $this->listAll();
+      }
+      return "tema/admin/pages/viewEmployee.php";
+    }
+    return "tema/admin/pages/login.php";
   }
 }

@@ -126,7 +126,7 @@ function visualizarExpediente(nome) {
 // Função para filtrar os funcionários
 document.getElementById('search-funcionario').addEventListener('keyup', function () {
     const searchValue = this.value.toLowerCase();
-    const rows = document.querySelectorAll('#lista-funcionarios tr');
+    const rows = document.querySelectorAll('#lista-funcionarios tbody tr');
 
     rows.forEach(row => {
         const nomeCompleto = row.cells[0].textContent.toLowerCase();

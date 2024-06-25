@@ -34,13 +34,16 @@ class Departamento
   {
     //Verifica se a sessão da departamento existe , se não existir ela 
     //retorna a função lista 
-    if (!isset($_SESSION['departamento']) || empty($_SESSION['contador'])) {
+    if (isset($_SESSION['usuario'])) {
+      if (!isset($_SESSION['departamento']) || empty($_SESSION['contador'])) {
+        $_SESSION['contador'] = false;
+        return $this->listAll();
+      }
       $_SESSION['contador'] = false;
-      return $this->listAll();
+      //Retorna para tela de registro do site...
+      return "tema/admin/pages/registerDepartment.php";
     }
-    $_SESSION['contador'] = false;
-    //Retorna para tela de registro do site...
-    return "tema/admin/pages/registerDepartment.php";
+    return "tema/admin/pages/login.php";
   }
   /**
    * A função foi criada com intuito de realizar um cadastro
@@ -81,10 +84,25 @@ class Departamento
       $list = $this->departamento->all();
       $_SESSION['departamento'] = $list;
     }
+    if ($_SESSION['contador']) {
+      return $this->viewAll();
+    }
     if (isset($_SESSION['contador'])) {
       $_SESSION['contador'] = true;
     }
     //Retorna a tela de registro 
     return $this->viewRegister();
+  }
+
+  public function viewAll()
+  {
+    if (isset($_SESSION['usuario'])) {
+      if (!isset($_SESSION['departamento']) || empty($_SESSION['contador'])) {
+        $_SESSION['contador'] = true;
+        return $this->listAll();
+      }
+      return "tema/admin/pages/viewDepartment.php";
+    }
+    return "tema/admin/pages/login.php";
   }
 }

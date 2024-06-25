@@ -364,20 +364,20 @@ class PlantaoModel extends Model
         return $findByScale->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
 
-    public function relatorio(): ?array
+    public function registerReport(): ?array
     {
         // Prepara a query de seleção de todos os registros com aquele
         $sql = "SELECT "
-                . "d.nome , d.idUnidade , d.idDepartamento , d.alta_prevista , d.admissao , "
-                . "d.procedimentos_realizados , d.numero_obito , d.leito_ocupado , p.idPlantao , p.enfermeiro , "
-                . "p.falta_enfermeiro , p.dobra_enfermeiro , p.tecnico , p.falta_tecnico , "
-                . "p.dobra_tecnico , p.dobra_tecnico , p.func_remanejado , p.medico_plantonista , p.presentes "
+            . "d.nome , d.idUnidade , d.idDepartamento , d.alta_prevista , d.admissao , "
+            . "d.procedimentos_realizados , d.numero_obito , d.leito_ocupado , p.idPlantao , p.enfermeiro , "
+            . "p.falta_enfermeiro , p.dobra_enfermeiro , p.tecnico , p.falta_tecnico , "
+            . "p.dobra_tecnico , p.dobra_tecnico , p.func_remanejado , p.medico_plantonista , p.presentes "
             . "FROM "
-                . "plantao as p "
+            . "plantao as p "
             . "INNER JOIN "
-            .     "departamento as d ON p.idDepartamento = d.idDepartamento "
+            . "departamento as d ON p.idDepartamento = d.idDepartamento "
             . "ORDER BY "
-            .     "d.idDepartamento";
+            . "d.idDepartamento";
 
         // Executa a query de seleção de todos os registros
         $relatorio = $this->read($sql);
@@ -390,7 +390,7 @@ class PlantaoModel extends Model
         }
         if (!$relatorio->rowCount()) {
             $this->typeMessage = "warning";
-            $this->message = "Nenhuma relatório foi encontrado relacionado a esse plantão!";
+            $this->message = "Nenhum relatório foi encontrado relacionado a esse plantão!";
             return null;
         }
         $this->typeMessage = "sucess";
@@ -399,4 +399,82 @@ class PlantaoModel extends Model
         return $relatorio->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
 
+    public function countReport()
+    {
+        // Prepara a query de seleção de todos os registros com aquele
+        $sql = "SELECT "
+            . "count(*) AS qtd_relatorio "
+            . "FROM "
+            . "plantao as p "
+            . "INNER JOIN "
+            . "escala as e ON p.idEscala = e.idEscala "
+            . "WHERE "
+            . "DATE(data_escala) = CURDATE()";
+
+        // Executa a query de seleção de todos os registros
+        $findById = $this->read($sql);
+
+        // Se houver falhas ou não tiver registros na tabela, retorna null.
+        if ($this->getFail()) {
+            $this->typeMessage = "error";
+            $this->message = "Ooops algo deu errado!";
+            return null;
+        }
+        if (!$findById->rowCount()) {
+            $this->typeMessage = "warning";
+            $this->message = "Nenhum relatório foi encontrado!";
+            return null;
+        }
+        $this->typeMessage = "sucess";
+        $this->message = "A consulta foi feita com sucesso!";
+        // Retorna os registros da tabela
+        return $findById->fetchObject(__CLASS__);
+    }
+
+    public function readReport(): ?array
+    {
+        // Prepara a query de seleção de todos os registros com aquele
+        $sql = "SELECT "
+            . "p.idUnidade, u.nome, e.data_escala, COUNT(p.idPlantao) AS total_plantoes, "
+            . "SUM(p.falta_tecnico) AS total_falta_tecnico, "
+            . "SUM(p.func_remanejado) AS total_func_remanejado, "
+            . "SUM(p.dobra_funcionario) AS total_dobra_funcionario, "
+            . "GROUP_CONCAT(DISTINCT p.prescritor SEPARATOR ', ') AS prescritores, "
+            . "SUM(p.enfermeiro) AS total_enfermeiros, "
+            . "GROUP_CONCAT(DISTINCT p.responsavel SEPARATOR ', ') AS responsaveis, "
+            . "SUM(p.tecnico) AS total_tecnicos, SUM(p.medico_plantonista) AS total_medicos_plantonistas, "
+            . "SUM(p.falta_enfermeiro) AS total_falta_enfermeiro, "
+            . "SUM(p.falta_funcionario) AS total_falta_funcionario, "
+            . "SUM(p.presentes) AS total_presentes, SUM(p.dobra_tecnico) AS total_dobra_tecnico, "
+            . "SUM(p.dobra_enfermeiro) AS total_dobra_enfermeiro "
+            . "FROM "
+            . "plantao as p "
+            . "LEFT JOIN "
+            . "unidade u ON p.idUnidade = u.idUnidade "
+            . "LEFT JOIN "
+            . "escala e ON p.idEscala = e.idEscala "
+            . "GROUP BY "
+            . "p.idUnidade, e.data_escala"
+            . "ORDER BY "
+            . "e.data_escala DESC, p.idUnidade ";	    
+
+        // Executa a query de seleção de todos os registros
+        $relatorio = $this->read($sql);
+
+        // Se houver falhas ou não tiver registros na tabela, retorna null.
+        if ($this->getFail()) {
+            $this->typeMessage = "error";
+            $this->message = "Ooops algo deu errado!";
+            return null;
+        }
+        if (!$relatorio->rowCount()) {
+            $this->typeMessage = "warning";
+            $this->message = "Nenhum relatório foi encontrado!";
+            return null;
+        }
+        $this->typeMessage = "sucess";
+        $this->message = "A consulta foi feita com sucesso!";
+        // Retorna os registros da tabela
+        return $relatorio->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
+    }
 }

@@ -34,13 +34,16 @@ class Escala
   {
     //Verifica se a sessão da escala existe , se não existir ela 
     //retorna a função lista 
-    if (!isset($_SESSION['escala']) || empty($_SESSION['contador'])) {
+    if (isset($_SESSION['usuario'])) {
+      if (!isset($_SESSION['escala']) || empty($_SESSION['contador'])) {
+        $_SESSION['contador'] = false;
+        return $this->listAll();
+      }
       $_SESSION['contador'] = false;
-      return $this->listAll();
+      //Retorna para tela de registro do site...
+      return 'tema/admin/pages/registerScale.php';
     }
-    $_SESSION['contador'] = false;
-    //Retorna para tela de registro do site...
-    return "tema/admin/pages/registerScale.php";
+    return "tema/admin/pages/login.php";
   }
   /**
    * A função foi criada com intuito de realizar um cadastro
@@ -79,10 +82,24 @@ class Escala
       $list = $this->escala->all();
       $_SESSION['escala'] = $list;
     }
+    if ($_SESSION['contador']) {
+      return $this->viewAll();
+    }
     if (isset($_SESSION['contador'])) {
       $_SESSION['contador'] = true;
     }
     //Retorna a tela de registro 
     return $this->viewRegister();
+  }
+  public function viewAll()
+  {
+    if (isset($_SESSION['usuario'])) {
+      if (!isset($_SESSION['escala']) || empty($_SESSION['contador'])) {
+        $_SESSION['contador'] = true;
+        return $this->listAll();
+      }
+      return "tema/admin/pages/viewScale.php";
+    }
+    return "tema/admin/pages/login.php";
   }
 }

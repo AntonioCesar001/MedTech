@@ -27,7 +27,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="tema/admin/plugins/summernote/summernote-bs4.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="tema/admin/css/styles.css"> !-->
+    <link rel="stylesheet" href="tema/admin/css/styles.css">
 
 </head>
 
@@ -58,7 +58,6 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-
                     <div class="container mt-5">
                         <h1 class="text-center"> Funcionários </h1>
                         <div class="section-content">
@@ -69,7 +68,7 @@
                                     placeholder="Nome ou Especialidade">
                             </div>
 
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="lista-funcionarios">
                                 <thead>
                                     <tr>
                                         <th>Nome Completo</th>
@@ -104,6 +103,7 @@
                                     } ?>
                                 </tbody>
                             </table>
+                            
                             <button class="btn" data-toggle="modal" data-target="#funcionarioModal">Adicionar
                                 Funcionário</button>
                         </div>
@@ -164,6 +164,27 @@
         </div>
     </footer>
 
+
+    <script>
+        document.getElementById('search-funcionario').addEventListener('keyup', function () {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#lista-funcionarios tbody tr');
+
+            rows.forEach(row => {
+                const nomeCompleto = row.cells[0].textContent.toLowerCase();
+                const especialidade = row.cells[1].textContent.toLowerCase();
+                if (nomeCompleto.includes(searchValue) || especialidade.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="tema/admin/dist/js/scripts.js"></script>
@@ -181,9 +202,9 @@
     <script src="tema/admin/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
     <script src="tema/admin/plugins/sparklines/sparkline.js"></script>
+    <!-- </div> -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="scripts.js"></script>
     <!-- jQuery -->
     <script src="tema/admin/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->

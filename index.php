@@ -9,7 +9,7 @@ use Source\Controllers\Relatorio;
 session_start();
 use Source\Controllers\Usuario;
 use Source\Controllers\Unidade;
-use Source\Controllers\departamento;
+use Source\Controllers\Departamento;
 use Source\Controllers\Escala;
 use Source\Controllers\Funcionario;
 use Source\Controllers\Plantao;
@@ -69,6 +69,10 @@ switch ($c) {
                 $controller = new Unidade();
                 $controller->listAll();
                 break;
+            case 'visualizar':
+                $controller = new Unidade();
+                include $controller->viewAll();
+                break;
         }
         break;
     case 'funcionario':
@@ -84,6 +88,10 @@ switch ($c) {
             case 'lista':
                 $controller = new Funcionario();
                 $controller->listAll();
+                break;
+            case 'visualizar':
+                $controller = new Funcionario();
+                include $controller->viewAll();
                 break;
         }
         break;
@@ -109,6 +117,10 @@ switch ($c) {
                 $controller = new Departamento();
                 $controller->listAll();
                 break;
+            case 'visualizar':
+                $controller = new Departamento();
+                include $controller->viewAll();
+                break;
         }
         break;
     case 'plantao':
@@ -133,6 +145,10 @@ switch ($c) {
                 $controller = new Plantao();
                 $controller->listAll();
                 break;
+            case 'visualizar':
+                $controller = new Plantao();
+                include $controller->viewAll();
+                break;
         }
         break;
     case 'escala':
@@ -149,7 +165,12 @@ switch ($c) {
                 $controller = new Escala();
                 $controller->listAll();
                 break;
+            case 'visualizar':
+                $controller = new Escala();
+                include $controller->viewAll();
+                break;
         }
+        break;
     case 'relatorio':
         switch ($a) {
             case 'cadastro':
@@ -163,6 +184,10 @@ switch ($c) {
             case 'lista':
                 $controller = new Relatorio();
                 $controller->listAll();
+                break;
+            case 'visualizar':
+                $controller = new Relatorio();
+                include $controller->viewAll();
                 break;
         }
         break;

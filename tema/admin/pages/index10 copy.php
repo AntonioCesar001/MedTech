@@ -4,16 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plantão ADM MRC</title>
+    <title>MedTech - Relatório</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="tema/admin/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="tema/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="tema/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="tema/admin/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="tema/admin/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="tema/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="tema/admin/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="tema/admin/plugins/summernote/summernote-bs4.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="tema/admin/css/styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            padding: 20px;
-            margin: 0;
-        }
-
         h1 {
             text-align: center;
             color: #4CAF50;
@@ -81,8 +96,13 @@
     </style>
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__shake" src="tema/admin/dist/img/medtech.jpg" alt="AdminLTELogo" height="60" width="60">
+    </div>
     <?php
+    include_once ('tema/admin/includes/menulateral.php');
     if (isset($_SESSION['relatorio'])) {
         $c = $_SESSION['relatorio'];
         ?>
@@ -102,7 +122,6 @@
                 foreach ($c as $row => $relatorio) {
                     $row = serialize($row);
                     $row = unserialize($row);
-                    //exit(var_dump($relatorio));
                     if ($relatorio->nome) {
                         if (
                             $relatorio->nome === 'Emergência'
@@ -139,12 +158,15 @@
                         }
                     }
                 }
-            }
-
+                foreach ($c as $row => $relatorio) {
+                    $row = serialize($row);
+                    $row = unserialize($row);
+                    if ($relatorio->nome) {
                         if (
                             $relatorio->nome === 'Centro Cirúrgico'
                             && $relatorio->idDepartamento === 3
                             && $relatorio->idUnidade === 1
+                            && $relatorio->idPlantao === 5
                         ) {
                             ?>
                             <div class="sub-section-title"><?= $relatorio->nome; ?></div>
@@ -173,10 +195,17 @@
                                     value="Médico(a) Plantonista: <?= $relatorio->medico_plantonista; ?>"></div>
                             <?php
                         }
+                    }
+                }
+                foreach ($c as $row => $relatorio) {
+                    $row = serialize($row);
+                    $row = unserialize($row);
+                    if ($relatorio->nome) {
                         if (
                             $relatorio->nome === 'Centro Obstétrico'
                             && $relatorio->idDepartamento === 2
                             && $relatorio->idUnidade === 1
+                            && $relatorio->idPlantao === 3
                         ) {
                             ?>
                             <div class="sub-section-title"><?= $relatorio->nome; ?></div>
@@ -208,27 +237,40 @@
                         </div>
                         <?php
                         }
-                        ?>
-                    <div class="section-content">
-                        <?php
+                    }
+                }
+                ?>
+            <div class="section-content">
+                <?php
+                foreach ($c as $row => $relatorio) {
+                    $row = serialize($row);
+                    $row = unserialize($row);
+                    if ($relatorio->nome) {
                         if (
                             $relatorio->nome === 'Escala p/o Plantão Seguinte'
                             && $relatorio->idDepartamento === 6
                             && $relatorio->idUnidade === 1
+                            && $relatorio->idPlantao === 3
                         ) {
                             ?>
                             <div class="section-title"><?= $relatorio->nome; ?>:</div>
-                            <div class="entry"><input type="text" name="escala_plantao[]"
-                                    value="Enfª: <?= $relatorio->enfermeiro; ?>">"></div>
-                            <div class="entry"><input type="text" name="escala_plantao[]" value="Tecª: <?= $relatorio->tecnico; ?>">">
+                            <div class="entry"><input type="text" name="escala_plantao[]" value="Enfª: <?= $relatorio->enfermeiro; ?>">
+                            </div>
+                            <div class="entry"><input type="text" name="escala_plantao[]" value="Tecª: <?= $relatorio->tecnico; ?>">
                             </div>
                             <?php
                         }
-
+                    }
+                }
+                foreach ($c as $row => $relatorio) {
+                    $row = serialize($row);
+                    $row = unserialize($row);
+                    if ($relatorio->nome) {
                         if (
                             $relatorio->nome === 'UTI Neo'
                             && $relatorio->idDepartamento === 5
                             && $relatorio->idUnidade === 1
+                            && $relatorio->idPlantao === 9
                         ) {
                             ?>
                             <div class="sub-section-title"><?= $relatorio->nome; ?></div>
@@ -252,10 +294,17 @@
                                     value="Ocupação de Leitos/Altas Previstas: <?= $relatorio->alta_prevista; ?>"></div>
                             <?php
                         }
+                    }
+                }
+                foreach ($c as $row => $relatorio) {
+                    $row = serialize($row);
+                    $row = unserialize($row);
+                    if ($relatorio->nome) {
                         if (
                             $relatorio->nome === 'UCIN Co'
                             && $relatorio->idDepartamento === 7
                             && $relatorio->idUnidade === 1
+                            && $relatorio->idPlantao === 10
                         ) {
                             ?>
                             <div class="sub-section-title"><?= $relatorio->nome; ?></div>
@@ -276,13 +325,22 @@
                             <div class="entry"><input type="text" name="ucin_co[]"
                                     value="Médico(a) Plantonista e Prescritor(a): <?= $relatorio->medico_plantonista; ?>"></div>
                             <div class="entry"><input type="text" name="ucin_co[]"
-                                    value="Ocupação de Leitos/Altas Previstas: <?= $relatorio->alta_prevista; ?>"></div>/
+                                    value="Ocupação de Leitos: <?= $relatorio->leito_ocupado; ?>"></div>
+                            <div class="entry"><input type="text" name="ucin_co[]"
+                                    value="Altas Previstas: <?= $relatorio->alta_prevista; ?>"></div>
                             <?php
                         }
+                    }
+                }
+                foreach ($c as $row => $relatorio) {
+                    $row = serialize($row);
+                    $row = unserialize($row);
+                    if ($relatorio->nome) {
                         if (
                             $relatorio->nome === 'UCIN Ca'
                             && $relatorio->idDepartamento === 8
                             && $relatorio->idUnidade === 1
+                            && $relatorio->idPlantao === 11
                         ) {
                             ?>
                             <div class="sub-section-title"><?= $relatorio->nome; ?></div>
@@ -306,10 +364,17 @@
                                     value="Ocupação de Leitos/Altas Previstas: <?= $relatorio->alta_prevista; ?>"></div>
                             <?php
                         }
+                    }
+                }
+                foreach ($c as $row => $relatorio) {
+                    $row = serialize($row);
+                    $row = unserialize($row);
+                    if ($relatorio->nome) {
                         if (
                             $relatorio->nome === 'Alojamento Conjunto'
                             && $relatorio->idDepartamento === 9
                             && $relatorio->idUnidade === 1
+                            && $relatorio->idPlantao === 12
                         ) {
                             ?>
                             <div class="sub-section-title"><?= $relatorio->nome; ?></div>
@@ -318,7 +383,7 @@
                             <div class="entry"><input type="text" name="alojamento_conjunto[]"
                                     value="Falta: <?= $relatorio->falta_enfermeiro; ?>"></div>
                             <div class="entry"><input type="text" name="alojamento_conjunto[]"
-                                    value="Dobra: <?= $relatorio->falta_enfermeiro; ?>"></div>
+                                    value="Dobra: <?= $relatorio->dobra_enfermeiro; ?>"></div>
                             <div class="entry"><input type="text" name="alojamento_conjunto[]"
                                     value="Técnico(a): <?= $relatorio->tecnico; ?>"></div>
                             <div class="entry"><input type="text" name="alojamento_conjunto[]"
@@ -331,21 +396,25 @@
                                     value="Médico(a) Plantonista e Prescritor(a): <?= $relatorio->medico_plantonista; ?>"></div>
                             <?php
                         }
+                    }
+                }
+                ?>
+            </div>
+            <?php
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'Berçário'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
                         ?>
-                    </div>
-
-
-
-                    <div class="section-content">
-                        <?php
-                        if (
-                            $relatorio->nome === 'Berçário'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                        <div class="section-content">
                             <div class="section-title">Berçário</div>
-                            <div class="entry"><input type="text" name="bercario[]" value="Enfermeiro(a): 01"></div>
+                            <div class="entry"><input type="text" name="bercario[]" value="Enfermeiro(a): $relatorio->nome"></div>
                             <div class="entry"><input type="text" name="bercario[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="bercario[]" value="Dobra: "></div>
                             <div class="entry"><input type="text" name="bercario[]" value="Técnico(a): 02"></div>
@@ -354,181 +423,289 @@
                             <div class="entry"><input type="text" name="bercario[]" value="Func. Remanejada(o): "></div>
                             <div class="entry"><input type="text" name="bercario[]" value="Médico(a) Plantonista e Prescritor(a): 01">
                             </div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-
-                    <div class="section-content">
+                        </div>
                         <?php
-                        if (
-                            $relatorio->nome === 'Alojamento Conjunto'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                    }
+                }
+            }
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'Banco de Leite'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
+                        ?>
+                        <div class="section-content">
+
                             <div class="section-title">Banco de Leite</div>
                             <div class="entry"><input type="text" name="banco_de_leite[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="banco_de_leite[]" value="Dobra: "></div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-
-                    <div class="section-content">
+                        </div>
                         <?php
-                        if (
-                            $relatorio->nome === 'Alojamento Conjunto'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                    }
+                }
+            }
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'Recepção ADM'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
+                        ?>
+                        <div class="section-content">
                             <div class="section-title">Recepção ADM</div>
                             <div class="entry"><input type="text" name="recepcao_adm[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="recepcao_adm[]" value="Dobra: "></div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-
-                    <div class="section-content">
+                        </div>
                         <?php
-                        if (
-                            $relatorio->nome === 'Alojamento Conjunto'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                    }
+                }
+            }
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'USG'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
+                        ?>
+                        <div class="section-content">
                             <div class="section-title">USG</div>
                             <div class="entry"><input type="text" name="usg[]" value="Médico: 01"></div>
                             <div class="entry"><input type="text" name="usg[]" value="Téc de Enfermagem: 01"></div>
                             <div class="entry"><input type="text" name="usg[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="usg[]" value="Dobra: "></div>
-                            <?php
-                        }
-                        ?>
-                    </div>
 
-                    <div class="section-content">
+                        </div>
                         <?php
-                        if (
-                            $relatorio->nome === 'Alojamento Conjunto'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                    }
+                }
+            }
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'Técnico em Nutrição'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
+                        ?>
+                        <div class="section-content">
                             <div class="section-title">Técnico em Nutrição</div>
                             <div class="entry"><input type="text" name="tecnico_em_nutricao[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="tecnico_em_nutricao[]" value="Dobra: "></div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-
-                    <div class="section-content">
+                        </div>
                         <?php
-                        if (
-                            $relatorio->nome === 'Alojamento Conjunto'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                    }
+                }
+            }
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'Óbitos'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
+                        ?>
+                        <div class="section-content">
                             <div class="section-title">Óbitos</div>
                             <div class="entry"><input type="text" name="obitos[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="obitos[]" value="Dobra: "></div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-
-                    <div class="section-content">
+                        </div>
                         <?php
-                        if (
-                            $relatorio->nome === 'Alojamento Conjunto'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                    }
+                }
+            }
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'Rouparia'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
+                        ?>
+                        <div class="section-content">
                             <div class="section-title">Rouparia</div>
                             <div class="entry"><input type="text" name="rouparia[]" value="Rouparia: 01"></div>
                             <div class="entry"><input type="text" name="rouparia[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="rouparia[]" value="Dobra: "></div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-
-                    <div class="section-content">
+                        </div>
                         <?php
-                        if (
-                            $relatorio->nome === 'Alojamento Conjunto'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                    }
+                }
+            }
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'Psicologia'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
+                        ?>
+                        <div class="section-content">
                             <div class="section-title">Psicologia</div>
                             <div class="entry"><input type="text" name="psicologia[]" value="Psicologia: 01"></div>
                             <div class="entry"><input type="text" name="psicologia[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="psicologia[]" value="Dobra: "></div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-                    <div class="section-content">
+                        </div>
                         <?php
-                        if (
-                            $relatorio->nome === 'Alojamento Conjunto'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                    }
+                }
+            }
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'Terapeuta Ocupacional'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
+                        ?>
+                        <div class="section-content">
                             <div class="section-title">Terapeuta Ocupacional</div>
                             <div class="entry"><input type="text" name="terapeuta_ocupacional[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="terapeuta_ocupacional[]" value="Dobra: "></div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-
-                    <div class="section-content">
+                        </div>
                         <?php
-                        if (
-                            $relatorio->nome === 'Alojamento Conjunto'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                    }
+                }
+            }
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'Higienização'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
+                        ?>
+                        <div class="section-content">
                             <div class="section-title">Higienização</div>
                             <div class="entry"><input type="text" name="higienizacao[]" value="Higienização: 03"></div>
                             <div class="entry"><input type="text" name="higienizacao[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="higienizacao[]" value="Dobra: "></div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-
-                    <div class="section-content">
+                        </div>
                         <?php
-                        if (
-                            $relatorio->nome === 'Motorista'
-                            && $relatorio->idDepartamento === 5
-                            && $relatorio->idUnidade === 1
-                        ) {
-                            ?>
+                    }
+                }
+            }
+            foreach ($c as $row => $relatorio) {
+                $row = serialize($row);
+                $row = unserialize($row);
+                if ($relatorio->nome) {
+                    if (
+                        $relatorio->nome === 'Motorista'
+                        && $relatorio->idDepartamento === 5
+                        && $relatorio->idUnidade === 1
+                        && $relatorio->idPlantao === 13
+                    ) {
+                        ?>
+                        <div class="section-content">
                             <div class="section-title"><?= $relatorio->nome; ?></div>
-                            <div class="entry"><input type="text" name="motorista[]" value="Motorista: <?= $relatorio->presentes; ?>"></div>
+                            <div class="entry"><input type="text" name="motorista[]" value="Motorista: <?= $relatorio->presentes; ?>">
+                            </div>
                             <div class="entry"><input type="text" name="motorista[]" value="Falta: "></div>
                             <div class="entry"><input type="text" name="motorista[]" value="Dobra: "></div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-                    <?php
-
+                        </div>
+                        <?php
+                    }
+                }
+            }
+    }
     ?>
         <button class="btn" type="submit">Enviar e Visualizar</button>
     </form>
 
+    <footer class="main-footer">
+        <strong>Copyright &copy; 2024 <a href="#">MedTech</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Versão</b> 1.0.0
+        </div>
+    </footer>
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="tema/admin/dist/scripts.js"></script>
+    <!-- jQuery -->
+    <script src="tema/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="tema/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="tema/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="tema/admin/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="tema/admin/plugins/sparklines/sparkline.js"></script>
+    <!-- </div> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="tema/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="tema/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="tema/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="tema/admin/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="tema/admin/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="tema/admin/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="tema/admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="tema/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="tema/admin/plugins/moment/moment.min.js"></script>
+    <script src="tema/admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="tema/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="tema/admin/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="tema/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="tema/admin/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="tema/admin/dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="tema/admin/dist/js/pages/dashboard.js"></script>
     <script>
         document.getElementById('plantao-form').addEventListener('submit', function (event) {
             event.preventDefault();
