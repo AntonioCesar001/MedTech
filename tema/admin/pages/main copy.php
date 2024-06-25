@@ -47,7 +47,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>General Form</h1>
+                            <h1></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -58,7 +58,6 @@
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-            <section class="content">
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
@@ -77,12 +76,12 @@
                                         }
                                     }
                                     ?>
-                                    <p><br>Departamentos ㅤㅤInseridos<br></p>
+                                    <p><br>Departamentos Inseridos<br></p>
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-stethoscope"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Mais informações <i
+                                <a href="index.php?c=departamento&a=visualizar" class="small-box-footer">Mais informações <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -92,12 +91,12 @@
                             <div class="small-box bg-success">
                                 <div class="inner">
                                     <h3>53<sup style="font-size: 20px">%</sup></h3>
-                                    <p><br><br>Relatórios Detalhados<br></p>
+                                    <p><br>Relatórios Detalhados<br></p>
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-file-medical"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Mais informações <i
+                                <a href="index.php?c=relatorio&a=visualizar" class="small-box-footer">Mais informações <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -117,12 +116,12 @@
                                         }
                                     }
                                     ?>
-                                    <p><br>Funcionarios Cadastrados<br></p>
+                                    <p><br>Funcionarios Cadastrados</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-user-md"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Mais informações <i
+                                <a href="index.php?c=funcionario&a=visualizar" class="small-box-footer">Mais informações <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -142,12 +141,12 @@
                                         }
                                     }
                                     ?>
-                                    <p><br><br>Escala do Dia<br></p>
+                                    <p><br><br>Escalas do Dia</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-calendar-alt"></i>
+                                <i class="fas fa-calendar-alt"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Mais informações <i
+                                <a href="index.php?c=escala&a=visualizar" class="small-box-footer">Mais informações <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -212,7 +211,6 @@
         <!-- </div> -->
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="scripts.js"></script>
         <!-- jQuery -->
         <script src="tema/admin/plugins/jquery/jquery.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
@@ -271,7 +269,7 @@
                             $row = unserialize($row);
                             if ($row->qtd_leitos_livres || $row->numero_leitos || $row->leitos_ocupados) {
                                 ?>
-                                                                            {
+                                                    {
                                     data: [
                                         <?= $row->leitos_ocupados; ?>,
                                         <?= $row->numero_leitos; ?>,
@@ -279,7 +277,7 @@
                                     ],
                                     backgroundColor: ['#f56954', '#00a65a', '#f39c12',],
                                 }
-                                                                            <?php
+                                                    <?php
                             }
                         }
     }
@@ -302,3 +300,5 @@
         })
     </script>
 </body>
+
+</html>
