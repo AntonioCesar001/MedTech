@@ -2,6 +2,7 @@
 namespace Source\Controllers;
 
 use Source\Models\DepartamentoModel;
+use Source\Models\UnidadeModel;
 
 ini_set("display_errors", 1);
 
@@ -19,10 +20,12 @@ class Departamento
    * do banco e facilitar o controle de dados do site...
    */
   private $departamento;
+  private $unidade;
 
   public function __construct()
   {
     $this->departamento = new DepartamentoModel();
+    $this->unidade = new UnidadeModel();
   }
   /**
    * A função foi criada com intuito de retornar a tela 

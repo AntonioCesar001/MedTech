@@ -124,9 +124,10 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
+                    <div class="row">
                     <div class="container mt-5">
                         <h1>Plantão ADM MRC</h1>
-                        <form class="col-md-12" action="index.php?c=relatorio&a=cadastro" method "post" id="plantao-form">
+                        <form action "index.php?c=relatorio&a=cadastro" method "post" id="plantao-form">
                             <!-- Pre-defined Content -->
                             <div class="section-content">
                                 <div class="section-title">Responsáveis:</div>
@@ -448,30 +449,23 @@
                                 if ($relatorio->nome) {
                                     if (
                                         $relatorio->nome === 'Berçário'
-                                        && $relatorio->idDepartamento === 11
+                                        && $relatorio->idDepartamento === 5
                                         && $relatorio->idUnidade === 1
-                                        && $relatorio->idPlantao === 14
+                                        && $relatorio->idPlantao === 13
                                     ) {
                                         ?>
                                         <div class="section-content">
-                                            <div class="section-title"><?= $relatorio->nome; ?></div>
+                                            <div class="section-title">Berçário</div>
                                             <div class="entry"><input type="text" name="bercario[]"
-                                                    value="Enfermeiro(a): <?= $relatorio->enfermeiro; ?>">
-                                            </div>
+                                                    value="Enfermeiro(a): $relatorio->nome"></div>
+                                            <div class="entry"><input type="text" name="bercario[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="bercario[]" value="Dobra: "></div>
+                                            <div class="entry"><input type="text" name="bercario[]" value="Técnico(a): 02"></div>
+                                            <div class="entry"><input type="text" name="bercario[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="bercario[]" value="Dobra: "></div>
+                                            <div class="entry"><input type="text" name="bercario[]" value="Func. Remanejada(o): "></div>
                                             <div class="entry"><input type="text" name="bercario[]"
-                                                    value="Falta: <?= $relatorio->falta_enfermeiro; ?>"></div>
-                                            <div class="entry"><input type="text" name="bercario[]"
-                                                    value="Dobra: <?= $relatorio->dobra_enfermeiro; ?>"></div>
-                                            <div class="entry"><input type="text" name="bercario[]"
-                                                    value="Técnico(a): <?= $relatorio->tecnico; ?>"></div>
-                                            <div class="entry"><input type="text" name="bercario[]"
-                                                    value="Falta: <?= $relatorio->falta_tecnico; ?>"></div>
-                                            <div class="entry"><input type="text" name="bercario[]"
-                                                    value="Dobra: <?= $relatorio->dobra_tecnico; ?>"></div>
-                                            <div class="entry"><input type="text" name="bercario[]"
-                                                    value="Func. Remanejada(o): <?= $relatorio->func_remanejado; ?>"></div>
-                                            <div class="entry"><input type="text" name="bercario[]"
-                                                    value="Médico(a) Plantonista e Prescritor(a): <?= $relatorio->medico_plantonista; ?>">
+                                                    value="Médico(a) Plantonista e Prescritor(a): 01">
                                             </div>
                                         </div>
                                         <?php
@@ -484,18 +478,16 @@
                                 if ($relatorio->nome) {
                                     if (
                                         $relatorio->nome === 'Banco de Leite'
-                                        && $relatorio->idDepartamento === 12
+                                        && $relatorio->idDepartamento === 5
                                         && $relatorio->idUnidade === 1
-                                        && $relatorio->idPlantao === 15
+                                        && $relatorio->idPlantao === 13
                                     ) {
                                         ?>
                                         <div class="section-content">
 
-                                            <div class="section-title"><?= $relatorio->nome; ?></div>
-                                            <div class="entry"><input type="text" name="banco_de_leite[]"
-                                                    value="Falta: <?= $relatorio->falta_presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="banco_de_leite[]"
-                                                    value="Dobra: <?= $relatorio->dobra_presentes; ?>"></div>
+                                            <div class="section-title">Banco de Leite</div>
+                                            <div class="entry"><input type="text" name="banco_de_leite[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="banco_de_leite[]" value="Dobra: "></div>
                                         </div>
                                         <?php
                                     }
@@ -507,17 +499,15 @@
                                 if ($relatorio->nome) {
                                     if (
                                         $relatorio->nome === 'Recepção ADM'
-                                        && $relatorio->idDepartamento === 13
+                                        && $relatorio->idDepartamento === 5
                                         && $relatorio->idUnidade === 1
-                                        && $relatorio->idPlantao === 20
+                                        && $relatorio->idPlantao === 13
                                     ) {
                                         ?>
                                         <div class="section-content">
-                                            <div class="section-title"><?= $relatorio->nome; ?></div>
-                                            <div class="entry"><input type="text" name="recepcao_adm[]"
-                                                    value="Falta:  <?= $relatorio->falta_presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="recepcao_adm[]"
-                                                    value="Dobra:  <?= $relatorio->dobra_presentes; ?>"></div>
+                                            <div class="section-title">Recepção ADM</div>
+                                            <div class="entry"><input type="text" name="recepcao_adm[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="recepcao_adm[]" value="Dobra: "></div>
                                         </div>
                                         <?php
                                     }
@@ -529,21 +519,17 @@
                                 if ($relatorio->nome) {
                                     if (
                                         $relatorio->nome === 'USG'
-                                        && $relatorio->idDepartamento === 14
+                                        && $relatorio->idDepartamento === 5
                                         && $relatorio->idUnidade === 1
-                                        && $relatorio->idPlantao === 21
+                                        && $relatorio->idPlantao === 13
                                     ) {
                                         ?>
                                         <div class="section-content">
-                                            <div class="section-title"><?= $relatorio->nome; ?></div>
-                                            <div class="entry"><input type="text" name="usg[]"
-                                                    value="Médico: <?= $relatorio->presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="usg[]"
-                                                    value="Téc de Enfermagem: <?= $relatorio->tecnico; ?>"></div>
-                                            <div class="entry"><input type="text" name="usg[]"
-                                                    value="Falta: <?= $relatorio->falta_tecnico; ?>"></div>
-                                            <div class="entry"><input type="text" name="usg[]"
-                                                    value="Dobra: <?= $relatorio->dobra_tecnico; ?>"></div>
+                                            <div class="section-title">USG</div>
+                                            <div class="entry"><input type="text" name="usg[]" value="Médico: 01"></div>
+                                            <div class="entry"><input type="text" name="usg[]" value="Téc de Enfermagem: 01"></div>
+                                            <div class="entry"><input type="text" name="usg[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="usg[]" value="Dobra: "></div>
 
                                         </div>
                                         <?php
@@ -556,17 +542,15 @@
                                 if ($relatorio->nome) {
                                     if (
                                         $relatorio->nome === 'Técnico em Nutrição'
-                                        && $relatorio->idDepartamento === 15
+                                        && $relatorio->idDepartamento === 5
                                         && $relatorio->idUnidade === 1
-                                        && $relatorio->idPlantao === 22
+                                        && $relatorio->idPlantao === 13
                                     ) {
                                         ?>
                                         <div class="section-content">
-                                            <div class="section-title"><?= $relatorio->nome; ?></div>
-                                            <div class="entry"><input type="text" name="tecnico_em_nutricao[]"
-                                                    value="Falta: <?= $relatorio->falta_presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="tecnico_em_nutricao[]"
-                                                    value="Dobra: <?= $relatorio->dobra_presentes; ?>"></div>
+                                            <div class="section-title">Técnico em Nutrição</div>
+                                            <div class="entry"><input type="text" name="tecnico_em_nutricao[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="tecnico_em_nutricao[]" value="Dobra: "></div>
                                         </div>
                                         <?php
                                     }
@@ -578,17 +562,15 @@
                                 if ($relatorio->nome) {
                                     if (
                                         $relatorio->nome === 'Óbitos'
-                                        && $relatorio->idDepartamento === 16
+                                        && $relatorio->idDepartamento === 5
                                         && $relatorio->idUnidade === 1
-                                        && $relatorio->idPlantao === 23
+                                        && $relatorio->idPlantao === 13
                                     ) {
                                         ?>
                                         <div class="section-content">
-                                            <div class="section-title"><?= $relatorio->nome; ?></div>
-                                            <div class="entry"><input type="text" name="obitos[]"
-                                                    value="Falta: <?= $relatorio->falta_presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="obitos[]"
-                                                    value="Dobra: <?= $relatorio->dobra_presentes; ?>"></div>
+                                            <div class="section-title">Óbitos</div>
+                                            <div class="entry"><input type="text" name="obitos[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="obitos[]" value="Dobra: "></div>
                                         </div>
                                         <?php
                                     }
@@ -600,19 +582,16 @@
                                 if ($relatorio->nome) {
                                     if (
                                         $relatorio->nome === 'Rouparia'
-                                        && $relatorio->idDepartamento === 17
+                                        && $relatorio->idDepartamento === 5
                                         && $relatorio->idUnidade === 1
-                                        && $relatorio->idPlantao === 24
+                                        && $relatorio->idPlantao === 13
                                     ) {
                                         ?>
                                         <div class="section-content">
-                                            <div class="section-title"><?= $relatorio->nome; ?></div>
-                                            <div class="entry"><input type="text" name="rouparia[]"
-                                                    value="Rouparia: <?= $relatorio->presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="rouparia[]"
-                                                    value="Falta: <?= $relatorio->falta_presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="rouparia[]"
-                                                    value="Dobra: <?= $relatorio->dobra_presentes; ?>"></div>
+                                            <div class="section-title">Rouparia</div>
+                                            <div class="entry"><input type="text" name="rouparia[]" value="Rouparia: 01"></div>
+                                            <div class="entry"><input type="text" name="rouparia[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="rouparia[]" value="Dobra: "></div>
                                         </div>
                                         <?php
                                     }
@@ -624,18 +603,16 @@
                                 if ($relatorio->nome) {
                                     if (
                                         $relatorio->nome === 'Psicologia'
-                                        && $relatorio->idDepartamento === 18
+                                        && $relatorio->idDepartamento === 5
                                         && $relatorio->idUnidade === 1
-                                        && $relatorio->idPlantao === 25
+                                        && $relatorio->idPlantao === 13
                                     ) {
                                         ?>
                                         <div class="section-content">
-                                            <div class="section-title"><?= $relatorio->nome; ?></div>
+                                            <div class="section-title">Psicologia</div>
                                             <div class="entry"><input type="text" name="psicologia[]" value="Psicologia: 01"></div>
-                                            <div class="entry"><input type="text" name="psicologia[]"
-                                                    value="Falta: <?= $relatorio->falta_presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="psicologia[]"
-                                                    value="Dobra: <?= $relatorio->dobra_presentes; ?>"></div>
+                                            <div class="entry"><input type="text" name="psicologia[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="psicologia[]" value="Dobra: "></div>
                                         </div>
                                         <?php
                                     }
@@ -647,17 +624,15 @@
                                 if ($relatorio->nome) {
                                     if (
                                         $relatorio->nome === 'Terapeuta Ocupacional'
-                                        && $relatorio->idDepartamento === 19
+                                        && $relatorio->idDepartamento === 5
                                         && $relatorio->idUnidade === 1
-                                        && $relatorio->idPlantao === 26
+                                        && $relatorio->idPlantao === 13
                                     ) {
                                         ?>
                                         <div class="section-content">
-                                            <div class="section-title"><?= $relatorio->nome; ?></div>
-                                            <div class="entry"><input type="text" name="terapeuta_ocupacional[]"
-                                                    value="Falta: <?= $relatorio->falta_presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="terapeuta_ocupacional[]"
-                                                    value="Dobra: <?= $relatorio->dobra_presentes; ?>"></div>
+                                            <div class="section-title">Terapeuta Ocupacional</div>
+                                            <div class="entry"><input type="text" name="terapeuta_ocupacional[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="terapeuta_ocupacional[]" value="Dobra: "></div>
                                         </div>
                                         <?php
                                     }
@@ -669,19 +644,16 @@
                                 if ($relatorio->nome) {
                                     if (
                                         $relatorio->nome === 'Higienização'
-                                        && $relatorio->idDepartamento === 20
+                                        && $relatorio->idDepartamento === 5
                                         && $relatorio->idUnidade === 1
-                                        && $relatorio->idPlantao === 27
+                                        && $relatorio->idPlantao === 13
                                     ) {
                                         ?>
                                         <div class="section-content">
-                                            <div class="section-title"><?= $relatorio->nome; ?></div>
-                                            <div class="entry"><input type="text" name="higienizacao[]"
-                                                    value="Higienização: <?= $relatorio->presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="higienizacao[]"
-                                                    value="Falta: <?= $relatorio->falta_presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="higienizacao[]"
-                                                    value="Dobra: <?= $relatorio->dobra_presentes; ?>"></div>
+                                            <div class="section-title">Higienização</div>
+                                            <div class="entry"><input type="text" name="higienizacao[]" value="Higienização: 03"></div>
+                                            <div class="entry"><input type="text" name="higienizacao[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="higienizacao[]" value="Dobra: "></div>
                                         </div>
                                         <?php
                                     }
@@ -703,10 +675,8 @@
                                             <div class="entry"><input type="text" name="motorista[]"
                                                     value="Motorista: <?= $relatorio->presentes; ?>">
                                             </div>
-                                            <div class="entry"><input type="text" name="motorista[]"
-                                                    value="Falta: <?= $relatorio->falta_presentes; ?>"></div>
-                                            <div class="entry"><input type="text" name="motorista[]"
-                                                    value="Dobra: <?= $relatorio->dobra_presentes; ?>"></div>
+                                            <div class="entry"><input type="text" name="motorista[]" value="Falta: "></div>
+                                            <div class="entry"><input type="text" name="motorista[]" value="Dobra: "></div>
                                         </div>
                                         <?php
                                     }
@@ -717,6 +687,7 @@
                         <button class="btn" type="submit">Enviar e Visualizar</button>
                     </form>
                     <br></br>
+                    </div>
                 </div>
             </div>
         </section>
@@ -795,5 +766,4 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="tema/admin/dist/js/pages/dashboard.js"></script>
 </body>
-
 </html>

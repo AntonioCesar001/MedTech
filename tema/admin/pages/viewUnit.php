@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedTech - Funcionário</title>
+    <title>MedTech - Unidade</title>
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -28,7 +29,6 @@
     <link rel="stylesheet" href="tema/admin/plugins/summernote/summernote-bs4.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="tema/admin/css/styles.css">
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a>Funcionário</a></li>
+                            <li class="breadcrumb-item"><a>Unidade</a></li>
                             <li class="breadcrumb-item active">Cadastro</li>
                         </ol>
                     </div>
@@ -57,92 +57,96 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="section-content">
-                    <h2 class="section-title">Funcionários</h2>
-                    <!-- Filtro de Pesquisa -->
-                    <div class="form-group">
-                        <label for="search-funcionario">Pesquisar</label>
-                        <input type="text" class="form-control" id="search-funcionario"
-                            placeholder="Nome ou Especialidade">
-                    </div>
+                <div class="row">
+                    <div class="container mt-5">
+                        <div class="section-content">
+                            <h2 class="section-title">Lista de Unidades</h2>
 
-                    <table class="table table-bordered" id="lista-funcionarios">
-                        <thead>
-                            <tr>
-                                <th>Nome Completo</th>
-                                <th>Especialidade</th>
-                                <th>Carga Horária</th>
-                            </tr>
-                        </thead>
-                        <tbody id="lista-funcionarios">
-                            <!-- Dados dos funcionários serão carregados aqui -->
-                            <!-- Exemplo de um funcionário -->
-                            <?php
-                            if (isset($_SESSION['funcionario'])) {
-                                $a = $_SESSION['funcionario'];
-                                foreach ($a as $row) {
-                                    $row = serialize($row);
-                                    $row = unserialize($row);
-                                    ?>
+
+                            <!-- Filtro de Pesquisa -->
+                            <div class="form-group">
+                                <label for="search-departamento">Pesquisar</label>
+                                <input type="text" class="form-control" id="search-unidade"
+                                    placeholder="Unidade ou Endereço">
+                            </div>
+
+                            <table class="table table-bordered" id="lista-unidades">
+                                <thead>
                                     <tr>
-                                        <td><?php echo $row->nome; ?></td>
-                                        <td><?php echo $row->especialidade; ?></td>
-                                        <td><?php echo $row->cargaHoraria; ?></td>
+                                        <th>Nome da Unidade</th>
+                                        <th>Endereço</th>
+                                        <th>CNES</th>
+                                        <th>Telefone</th>
+                                        <th>Ações</th>
                                     </tr>
+                                </thead>
+                                <tbody id="lista-unidades">
                                     <?php
-                                }
-                            } ?>
-                        </tbody>
-                    </table>
-
-                    <button class="btn" data-toggle="modal" data-target="#funcionarioModal">Adicionar
-                        Funcionário</button>
+                                    //session_start();
+                                    if (isset($_SESSION['unidade'])) {
+                                        $a = $_SESSION['unidade'];
+                                        foreach ($a as $row) {
+                                            $row = serialize($row);
+                                            $row = unserialize($row);
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row->nome; ?></td>
+                                                <td><?php echo $row->endereco; ?></td>
+                                                <td><?php echo $row->cnes; ?></td>
+                                                <td><?php echo $row->telefone; ?></td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm"
+                                                        onclick="visualizarFuncionario('Unidade A')">Visualizar</button>
+                                                    <button class="btn btn-warning btn-sm"
+                                                        onclick="editarFuncionario('Unidade A')">Editar</button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Modal para Cadastro de Funcionário -->
-        <div class="modal fade" id="funcionarioModal" tabindex="-1" aria-labelledby="funcionarioModalLabel"
-            aria-hidden="true">
+        <!-- Modal para Cadastro de Unidade -->
+        <div class="modal fade" id="unidadeModal" tabindex="-1" aria-labelledby="unidadeModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="funcionarioModalLabel">Cadastrar Funcionário</h5>
+                        <h5 class="modal-title" id="unidadeModalLabel">Cadastrar Unidade</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="index.php?c=funcionario&a=cadastro" method="post" id="form-funcionario">
+                        <form action="index.php?c=unidade&a=cadastro" method="post" id="form-unidade">
                             <div class="form-group">
-                                <label for="nome_completo">Nome Completo</label>
-                                <input type="text" class="form-control" id="nome_completo" name="nome" required>
+                                <label for="nome">Nome da Unidade</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required>
                             </div>
                             <div class="form-group">
-                                <label for="especialidade">Especialidade</label>
-                                <input type="text" class="form-control" id="especialidade" name="especialidade"
-                                    required>
+                                <label for="endereco">Endereço</label>
+                                <input type="text" class="form-control" id="endereco" name="endereco" required>
                             </div>
                             <div class="form-group">
-                                <label for="matricula">Matrícula</label>
-                                <input type="text" class="form-control" id="matricula" name="matricula" required>
+                                <label for="cnes">CNES</label>
+                                <input type="text" class="form-control" id="cnes" name="cnes" required>
                             </div>
                             <div class="form-group">
-                                <label for="cpf">CPF</label>
-                                <input type="text" class="form-control" id="cpf" name="cpf" required>
+                                <label for="telefone">Telefone</label>
+                                <input type="text" class="form-control" id="telefone" name="telefone" required>
                             </div>
-                            <div class="form-group">
-                                <label for="carga_horaria">Carga Horária</label>
-                                <input type="text" class="form-control" id="carga_horaria" name="cargaHoraria" required>
-                            </div>
-                            <button type="submit" class="btn">Salvar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <strong>Copyright &copy; 2024 <a href="#">MedTech</a>.</strong>
@@ -152,23 +156,6 @@
         </div>
     </footer>
 
-
-    <script>
-        document.getElementById('search-funcionario').addEventListener('keyup', function () {
-            const searchValue = this.value.toLowerCase();
-            const rows = document.querySelectorAll('#lista-funcionarios tbody tr');
-
-            rows.forEach(row => {
-                const nomeCompleto = row.cells[0].textContent.toLowerCase();
-                const especialidade = row.cells[1].textContent.toLowerCase();
-                if (nomeCompleto.includes(searchValue) || especialidade.includes(searchValue)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        });
-    </script>
 
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -193,6 +180,7 @@
     <!-- </div> -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
     <!-- jQuery -->
     <script src="tema/admin/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -227,6 +215,24 @@
     <script src="tema/admin/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="tema/admin/dist/js/pages/dashboard.js"></script>
+
+    <script>
+        // Função para filtrar as unidades
+        document.getElementById('search-unidade').addEventListener('keyup', function () {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#lista-unidades tr');
+
+            rows.forEach(row => {
+                const unitName = row.cells[0].textContent.toLowerCase();
+                const unitAddress = row.cells[1].textContent.toLowerCase();
+                if (unitName.includes(searchValue) || unitAddress.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

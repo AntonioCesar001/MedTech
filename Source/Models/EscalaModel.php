@@ -150,7 +150,17 @@ class EscalaModel extends Model
     public function all(): ?array
     {
         // Prepara a query de seleção de todos os registros
-        $sql = "SELECT * FROM " . self::$entity;
+        $sql = "SELECT "
+            . "u.nome as nome_unidade , d.nome as nome_departamento , e.turno , e.data_escala "
+            . "FROM "
+            . "escala e "
+            . "Join "
+            . "departamento d ON e.idDepartamento = d.idDepartamento "
+            . "Join "
+            . "unidade u ON e.idUnidade = u.idUnidade "
+            . "WHERE "
+            . "e.idUnidade = u.idUnidade";
+
 
         // Executa a query de seleção de todos os registros
         $stmt = $this->read($sql);

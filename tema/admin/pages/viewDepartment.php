@@ -56,105 +56,113 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-
-                <div class="section-content">
-                    <h2 class="section-title">Departamentos</h2>
-
-                    <!-- Filtro de Pesquisa -->
-                    <div class="form-group">
-                        <label for="search-departamento">Pesquisar</label>
-                        <input type="text" class="form-control" id="search-departamento"
-                            placeholder="Nome ou Especialidade">
-                    </div>
-
-                    <table class="table table-bordered" id="lista-departamentos">
-                        <thead>
-                            <tr>
-                                <th>Nome do Departamento</th>
-                                <th>Unidade</th>
-                                <th>Número de Leitos</th>
-                                <th>Alta Prevista</th>
-                                <th>Leitos Ocupados</th>
-                                <th>Número de Óbitos</th>
-                            </tr>
-                        </thead>
-                        <tbody id="lista-departamentos">
-                            <!-- Dados dos departamentos serão carregados aqui -->
-                            <!-- Exemplo de um departamento -->
-                            <?php
-                            if (isset($_SESSION['departamento'])) {
-                                $a = $_SESSION['departamento'];
-                                foreach ($a as $row) {
-                                    $row = serialize($row);
-                                    $row = unserialize($row);
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $row->nome; ?></td>
-                                        <td><?php echo $row->nome_unidade; ?></td>
-                                        <td><?php echo $row->numero_leito; ?></td>
-                                        <td><?php echo $row->alta_prevista; ?></td>
-                                        <td><?php echo $row->leito_ocupado; ?></td>
-                                        <td><?php echo $row->numero_obito; ?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            } ?>
-                        </tbody>
-                    </table>
-                    <button class="btn" data-toggle="modal" data-target="#departamentoModal">Adicionar
-                        Departamento</button>
-                </div>
-
-                <!-- Modal para Cadastro de Departamento -->
-                <div class="modal fade" id="departamentoModal" tabindex="-1" aria-labelledby="departamentoModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="departamentoModalLabel">Cadastrar Departamento</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                <div class="row">
+                    <div class="container mt-5">
+                        <div class="section-content">
+                            <h2 class="section-title">Lista de Departamentos</h2>
+                            <!-- Filtro de Pesquisa -->
+                            <div class="form-group">
+                                <label for="search-departamento">Pesquisar</label>
+                                <input type="text" class="form-control" id="search-departamento"
+                                    placeholder="Nome ou Especialidade">
                             </div>
-                            <div class="modal-body">
-                                <form id="form-departamento">
-                                    <div class="form-group">
-                                        <label for="nome_departamento">Nome do Departamento</label>
-                                        <input type="text" class="form-control" id="nome_departamento"
-                                            name="nome_departamento" required>
+
+                            <table class="table table-bordered" id="lista-departamentos">
+                                <thead>
+                                    <tr>
+                                        <th>Nome do Departamento</th>
+                                        <th>Unidade</th>
+                                        <th>Número de Leitos</th>
+                                        <th>Alta Prevista</th>
+                                        <th>Leitos Ocupados</th>
+                                        <th>Número de Óbitos</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lista-departamentos">
+                                    <!-- Dados dos departamentos serão carregados aqui -->
+                                    <!-- Exemplo de um departamento -->
+                                    <?php
+                                if (isset($_SESSION['departamento'])) {
+                                    $a = $_SESSION['departamento'];
+                                    foreach ($a as $row) {
+                                        $row = serialize($row);
+                                        $row = unserialize($row);
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $row->nome; ?></td>
+                                            <td><?php echo $row->nome_unidade; ?></td>
+                                            <td><?php echo $row->numero_leito; ?></td>
+                                            <td><?php echo $row->alta_prevista; ?></td>
+                                            <td><?php echo $row->leito_ocupado; ?></td>
+                                            <td><?php echo $row->numero_obito; ?></td>
+                                            <td>
+                                                <button class="btn btn-info btn-sm"
+                                                    onclick="visualizarDepartamento('Departamento A')">Visualizar</button>
+                                                <button class="btn btn-warning btn-sm"
+                                                    onclick="editarDepartamento('Departamento A')">Editar</button>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                } ?>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <!-- Modal para Cadastro de Departamento -->
+                        <div class="modal fade" id="departamentoModal" tabindex="-1"
+                            aria-labelledby="departamentoModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="departamentoModalLabel">Cadastrar Departamento</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="unidade_departamento">Unidade</label>
-                                        <input type="text" class="form-control" id="unidade_departamento"
-                                            name="unidade_departamento" required>
+                                    <div class="modal-body">
+                                        <form id="form-departamento">
+                                            <div class="form-group">
+                                                <label for="nome_departamento">Nome do Departamento</label>
+                                                <input type="text" class="form-control" id="nome_departamento"
+                                                    name="nome_departamento" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="unidade_departamento">Unidade</label>
+                                                <input type="text" class="form-control" id="unidade_departamento"
+                                                    name="unidade_departamento" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="num_leitos">Número de Leitos</label>
+                                                <input type="number" class="form-control" id="num_leitos"
+                                                    name="num_leitos" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="alta_prevista">Alta Prevista</label>
+                                                <input type="number" class="form-control" id="alta_prevista"
+                                                    name="alta_prevista" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="leitos_ocupados">Leitos Ocupados</label>
+                                                <input type="number" class="form-control" id="leitos_ocupados"
+                                                    name="leitos_ocupados" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="num_obitos">Número de Óbitos</label>
+                                                <input type="number" class="form-control" id="num_obitos"
+                                                    name="num_obitos" required>
+                                            </div>
+                                            <button type="submit" class="btn">Salvar</button>
+                                        </form>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="num_leitos">Número de Leitos</label>
-                                        <input type="number" class="form-control" id="num_leitos" name="num_leitos"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alta_prevista">Alta Prevista</label>
-                                        <input type="number" class="form-control" id="alta_prevista"
-                                            name="alta_prevista" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="leitos_ocupados">Leitos Ocupados</label>
-                                        <input type="number" class="form-control" id="leitos_ocupados"
-                                            name="leitos_ocupados" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="num_obitos">Número de Óbitos</label>
-                                        <input type="number" class="form-control" id="num_obitos" name="num_obitos"
-                                            required>
-                                    </div>
-                                    <button type="submit" class="btn">Salvar</button>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                < </div>
+            </div>
         </section>
     </div>
     <!-- /.content-wrapper -->

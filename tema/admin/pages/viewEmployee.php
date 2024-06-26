@@ -57,90 +57,58 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="section-content">
-                    <h2 class="section-title">Funcionários</h2>
-                    <!-- Filtro de Pesquisa -->
-                    <div class="form-group">
-                        <label for="search-funcionario">Pesquisar</label>
-                        <input type="text" class="form-control" id="search-funcionario"
-                            placeholder="Nome ou Especialidade">
+                <div class="row">
+                    <div class="container mt-5">
+                        <div class="section-content">
+                            <h2 class="section-title">Lista de Funcionários</h2>
+                            <!-- Filtro de Pesquisa -->
+                            <div class="form-group">
+                                <label for="search-funcionario">Pesquisar</label>
+                                <input type="text" class="form-control" id="search-funcionario"
+                                    placeholder="Nome ou Especialidade">
+                            </div>
+
+                            <table class="table table-bordered" id="lista-funcionarios">
+                                <thead>
+                                    <tr>
+                                        <th>Nome Completo</th>
+                                        <th>Especialidade</th>
+                                        <th>Carga Horária</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lista-funcionarios">
+                                    <!-- Dados dos funcionários serão carregados aqui -->
+                                    <!-- Exemplo de um funcionário -->
+                                    <?php
+                                    if (isset($_SESSION['funcionario'])) {
+                                        $a = $_SESSION['funcionario'];
+                                        foreach ($a as $row) {
+                                            $row = serialize($row);
+                                            $row = unserialize($row);
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row->nome; ?></td>
+                                                <td><?php echo $row->especialidade; ?></td>
+                                                <td><?php echo $row->cargaHoraria; ?></td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm"
+                                                        onclick="visualizarFuncionario('Funcionário A')">Visualizar</button>
+                                                    <button class="btn btn-warning btn-sm"
+                                                        onclick="editarFuncionario('Funcionário A')">Editar</button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
-                    <table class="table table-bordered" id="lista-funcionarios">
-                        <thead>
-                            <tr>
-                                <th>Nome Completo</th>
-                                <th>Especialidade</th>
-                                <th>Carga Horária</th>
-                            </tr>
-                        </thead>
-                        <tbody id="lista-funcionarios">
-                            <!-- Dados dos funcionários serão carregados aqui -->
-                            <!-- Exemplo de um funcionário -->
-                            <?php
-                            if (isset($_SESSION['funcionario'])) {
-                                $a = $_SESSION['funcionario'];
-                                foreach ($a as $row) {
-                                    $row = serialize($row);
-                                    $row = unserialize($row);
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $row->nome; ?></td>
-                                        <td><?php echo $row->especialidade; ?></td>
-                                        <td><?php echo $row->cargaHoraria; ?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            } ?>
-                        </tbody>
-                    </table>
-
-                    <button class="btn" data-toggle="modal" data-target="#funcionarioModal">Adicionar
-                        Funcionário</button>
                 </div>
             </div>
         </section>
-
-        <!-- Modal para Cadastro de Funcionário -->
-        <div class="modal fade" id="funcionarioModal" tabindex="-1" aria-labelledby="funcionarioModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="funcionarioModalLabel">Cadastrar Funcionário</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="index.php?c=funcionario&a=cadastro" method="post" id="form-funcionario">
-                            <div class="form-group">
-                                <label for="nome_completo">Nome Completo</label>
-                                <input type="text" class="form-control" id="nome_completo" name="nome" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="especialidade">Especialidade</label>
-                                <input type="text" class="form-control" id="especialidade" name="especialidade"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="matricula">Matrícula</label>
-                                <input type="text" class="form-control" id="matricula" name="matricula" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cpf">CPF</label>
-                                <input type="text" class="form-control" id="cpf" name="cpf" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="carga_horaria">Carga Horária</label>
-                                <input type="text" class="form-control" id="carga_horaria" name="cargaHoraria" required>
-                            </div>
-                            <button type="submit" class="btn">Salvar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- /.content-wrapper -->

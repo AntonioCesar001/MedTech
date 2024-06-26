@@ -177,7 +177,18 @@ class PlantaoModel extends Model
     public function all(): ?array
     {
         // Prepara a query de seleção de todos os registros
-        $sql = "SELECT * FROM " . self::$entity;
+        $sql = "SELECT "
+        . "u.nome as nome_unidade , d.nome as nome_departamento , e.turno , e.data_escala , e.data_escala , (p.falta_presentes + p.falta_tecnico + p.falta_enfermeiro) as falta_presentes, (p.dobra_presentes + p.dobra_tecnico + p.dobra_enfermeiro) as dobra_presentes, p.prescritor , p.func_remanejado "
+        . "FROM "
+        . "plantao p "
+        . "Join "
+        . "departamento d ON p.idDepartamento = d.idDepartamento "
+        . "Join "
+        . "unidade u ON p.idUnidade = u.idUnidade "
+        . "Join "
+        . "escala e ON p.idEscala = e.idEscala "
+        . "WHERE "
+        . "e.idUnidade = u.idUnidade";
 
         // Executa a query de seleção de todos os registros
         $stmt = $this->read($sql);

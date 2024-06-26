@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a>Funcionário</a></li>
+                            <li class="breadcrumb-item"><a>Plantão</a></li>
                             <li class="breadcrumb-item active">Cadastro</li>
                         </ol>
                     </div>
@@ -57,120 +57,117 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="container mt-5">
+                <div class="section-content">
+                    <h2 class="section-title">Plantões</h2>
 
-                        <h1>Plantões</h1>
-                        <div class="section-content">
-                            <h2 class="section-title">Lista de Plantões</h2>
+                    <!-- Filtro de Pesquisa -->
+                    <div class="form-group">
+                        <label for="search-plantao">Pesquisar</label>
+                        <input type="text" class="form-control" id="search-plantao"
+                            placeholder="Escala ou Departamento">
+                    </div>
 
-                            <!-- Filtro de Pesquisa -->
-                            <div class="form-group">
-                                <label for="search-plantao">Pesquisar</label>
-                                <input type="text" class="form-control" id="search-plantao"
-                                    placeholder="Escala ou Departamento">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Data da Escala</th>
+                                <th>Departamento</th>
+                                <th>Unidade</th>
+                                <th>Faltas</th>
+                                <th>Funcionários Remanejados</th>
+                                <th>Dobras</th>
+                                <th>Prescritor</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="lista-plantoes">
+                            <!-- Dados dos plantões serão carregados aqui -->
+                            <!-- Exemplo de um plantão -->
+                            <?php
+                            if (isset($_SESSION['plantao'])) {
+                                $a = $_SESSION['plantao'];
+                                foreach ($a as $row) {
+                                    $row = serialize($row);
+                                    $row = unserialize($row);
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $row->data_escala; ?></td>
+                                        <td><?php echo $row->nome_departamento; ?></td>
+                                        <td><?php echo $row->nome_unidade; ?></td>
+                                        <td><?php echo $row->falta_presentes; ?></td>
+                                        <td><?php echo $row->func_remanejado; ?></td>
+                                        <td><?php echo $row->dobra_presentes; ?></td>
+                                        <td><?php echo $row->prescritor; ?></td>
+                                    </tr>
+                                    <?php
+                                }
+                            } ?>
+                        </tbody>
+                    </table>
+                    <button class="btn" data-toggle="modal" data-target="#plantaoModal">Adicionar
+                        Plantão</button>
+                </div>
+
+                <!-- Modal para Cadastro de Plantão -->
+                <div class="modal fade" id="plantaoModal" tabindex="-1" aria-labelledby="plantaoModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="plantaoModalLabel">Cadastrar Plantão</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Escala</th>
-                                        <th>Departamento</th>
-                                        <th>Unidade</th>
-                                        <th>Falta</th>
-                                        <th>Funcionário Remanejado</th>
-                                        <th>Dobra</th>
-                                        <th>Prescritor</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="lista-plantoes">
-                                    <!-- Dados dos plantões serão carregados aqui -->
-                                    <!-- Exemplo de um plantão -->
-                                    <tr>
-                                        <td>Escala A</td>
-                                        <td>Departamento A</td>
-                                        <td>Unidade A</td>
-                                        <td>Não</td>
-                                        <td>Não</td>
-                                        <td>Sim</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <button class="btn btn-info btn-sm"
-                                                onclick="visualizarPlantao('Escala A')">Visualizar</button>
-                                            <button class="btn btn-warning btn-sm"
-                                                onclick="editarPlantao('Escala A')">Editar</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <button class="btn" data-toggle="modal" data-target="#plantaoModal">Adicionar
-                                Plantão</button>
-                        </div>
-
-                        <!-- Modal para Cadastro de Plantão -->
-                        <div class="modal fade" id="plantaoModal" tabindex="-1" aria-labelledby="plantaoModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="plantaoModalLabel">Cadastrar Plantão</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                            <div class="modal-body">
+                                <form id="form-plantao">
+                                    <div class="form-group">
+                                        <label for="escala_plantao">Escala</label>
+                                        <select class="form-control" id="funcionario_remanejado"
+                                            name="funcionario_remanejado" required>
+                                            <option value="Sim">Sim</option>
+                                            <option value="Não">Não</option>
+                                        </select>
                                     </div>
-                                    <div class="modal-body">
-                                        <form id="form-plantao">
-                                            <div class="form-group">
-                                                <label for="escala_plantao">Escala</label>
-                                                <select class="form-control" id="funcionario_remanejado"
-                                                    name="funcionario_remanejado" required>
-                                                    <option value="Sim">Sim</option>
-                                                    <option value="Não">Não</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="departamento_plantao">Departamento</label>
-                                                <input type="text" class="form-control" id="departamento_plantao"
-                                                    name="departamento_plantao" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="unidade_plantao">Unidade</label>
-                                                <input type="text" class="form-control" id="unidade_plantao"
-                                                    name="unidade_plantao" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="funcionario_escalado">Funcionário Escalado</label>
-                                                <input type="text" class="form-control" id="funcionario_escalado"
-                                                    name="funcionario_escalado" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="falta">Falta</label>
-                                                <input type="text" class="form-control" id="escala_plantao"
-                                                    name="escala_plantao" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="funcionario_remanejado">Funcionário Remanejado</label>
-                                                <input type="text" class="form-control" id="escala_plantao"
-                                                    name="escala_plantao" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="dobra">Dobra</label>
-                                                <input type="text" class="form-control" id="escala_plantao"
-                                                    name="escala_plantao" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="prescritor">Prescritor</label>
-                                                <input type="text" class="form-control" id="escala_plantao"
-                                                    name="escala_plantao" required>
-                                            </div>
-                                            <button type="submit" class="btn">Salvar</button>
-                                        </form>
+                                    <div class="form-group">
+                                        <label for="departamento_plantao">Departamento</label>
+                                        <input type="text" class="form-control" id="departamento_plantao"
+                                            name="departamento_plantao" required>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="unidade_plantao">Unidade</label>
+                                        <input type="text" class="form-control" id="unidade_plantao"
+                                            name="unidade_plantao" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="funcionario_escalado">Funcionário Escalado</label>
+                                        <input type="text" class="form-control" id="funcionario_escalado"
+                                            name="funcionario_escalado" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="falta">Falta</label>
+                                        <input type="text" class="form-control" id="escala_plantao"
+                                            name="escala_plantao" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="funcionario_remanejado">Funcionário Remanejado</label>
+                                        <input type="text" class="form-control" id="escala_plantao"
+                                            name="escala_plantao" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dobra">Dobra</label>
+                                        <input type="text" class="form-control" id="escala_plantao"
+                                            name="escala_plantao" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prescritor">Prescritor</label>
+                                        <input type="text" class="form-control" id="escala_plantao"
+                                            name="escala_plantao" required>
+                                    </div>
+                                    <button type="submit" class="btn">Salvar</button>
+                                </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

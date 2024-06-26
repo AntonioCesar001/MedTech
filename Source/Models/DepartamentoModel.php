@@ -156,7 +156,8 @@ class DepartamentoModel extends Model
     public function all(): ?array
     {
         // Prepara a query de seleção de todos os registros
-        $sql = "SELECT * FROM " . self::$entity;
+        $sql = "SELECT u.nome as nome_unidade , d.nome , d.admissao , d.alta_prevista , d.leito_ocupado , d.numero_leito , d.numero_obito , d.procedimentos_realizados "
+        ."FROM " . self::$entity . " d Join 	unidade u ON d.idUnidade = u.idUnidade where d.idUnidade = u.idunidade";
 
         // Executa a query de seleção de todos os registros
         $stmt = $this->read($sql);

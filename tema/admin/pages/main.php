@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MedTech</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -77,7 +77,7 @@
                                         }
                                     }
                                     ?>
-                                    <p><br>Departamentos ㅤㅤInseridos<br></p>
+                                    <p><br>Departamentos Inseridos<br></p>
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-stethoscope"></i>
@@ -91,8 +91,8 @@
                             <!-- small box -->
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-                                    <p><br><br>Relatórios Detalhados<br></p>
+                                    <h3>100<sup style="font-size: 20px">%</sup></h3>
+                                    <p><br>Relatórios Detalhados<br></p>
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-file-medical"></i>
@@ -142,7 +142,7 @@
                                         }
                                     }
                                     ?>
-                                    <p><br><br>Escala do Dia<br></p>
+                                    <p><br>Escala do Dia<br></p>
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-calendar-alt"></i>
@@ -302,3 +302,4 @@
         })
     </script>
 </body>
+</html>

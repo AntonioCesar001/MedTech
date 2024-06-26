@@ -7,28 +7,27 @@
     <title>MedTech - Unidade</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="tema/admin/plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="tema/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="tema/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="tema/admin/plugins/jqvmap/jqvmap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="tema/admin/dist/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="tema/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="tema/admin/plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="tema/admin/plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="tema/admin/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="tema/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="tema/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="tema/admin/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="tema/admin/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="tema/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="tema/admin/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="tema/admin/plugins/summernote/summernote-bs4.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="tema/admin/css/styles.css">
+    <link rel="stylesheet" href="tema/admin/css/styles.css"> 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -57,8 +56,11 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                    <div class="section-content">
-                        <h2 class="section-title">Unidades</h2>
+                <div class="row">
+                    <div class="container mt-5">
+                        <h1 class="text-center">Unidades</h1>
+                        <div class="section-content">
+                            <h2 class="section-title">Lista de Unidades</h2>
 
                         <table class="table table-bordered">
                             <thead>
@@ -67,6 +69,7 @@
                                     <th>Endereço</th>
                                     <th>CNES</th>
                                     <th>Telefone</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody id="lista-unidades">
@@ -83,6 +86,12 @@
                                             <td><?php echo $row->endereco; ?></td>
                                             <td><?php echo $row->cnes; ?></td>
                                             <td><?php echo $row->telefone; ?></td>
+                                            <td>
+                                            <button class="btn btn-info btn-sm"
+                                                onclick="visualizarFuncionario('Unidade A')">Visualizar</button>
+                                            <button class="btn btn-warning btn-sm"
+                                                onclick="editarFuncionario('Unidade A')">Editar</button>
+                                            </td>
                                         </tr>
                                         <?php
                                     }
@@ -91,8 +100,9 @@
                         </table>
                         <button class="btn btn-primary" data-toggle="modal" data-target="#unidadeModal">Adicionar
                             Unidade</button>
+                        </div>
                     </div>
-
+                </div>
             </div>
         </section>
 

@@ -57,46 +57,58 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="section-content">
-                    <h2 class="section-title">Funcionários</h2>
-                    <!-- Filtro de Pesquisa -->
-                    <div class="form-group">
-                        <label for="search-funcionario">Pesquisar</label>
-                        <input type="text" class="form-control" id="search-funcionario"
-                            placeholder="Nome ou Especialidade">
+                <div class="row">
+                    <div class="container mt-5">
+                        <h1 class="text-center"> Funcionários </h1>
+                        <div class="section-content">
+                            <!-- Filtro de Pesquisa -->
+                            <div class="form-group">
+                                <label for="search-funcionario">Pesquisar</label>
+                                <input type="text" class="form-control" id="search-funcionario"
+                                    placeholder="Nome ou Especialidade">
+                            </div>
+
+                            <table class="table table-bordered" id="lista-funcionarios">
+                                <thead>
+                                    <tr>
+                                        <th>Nome Completo</th>
+                                        <th>Especialidade</th>
+                                        <th>Carga Horária</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lista-funcionarios">
+                                    <!-- Dados dos funcionários serão carregados aqui -->
+                                    <!-- Exemplo de um funcionário -->
+                                    <?php
+                                    if (isset($_SESSION['funcionario'])) {
+                                        $a = $_SESSION['funcionario'];
+                                        foreach ($a as $row) {
+                                            $row = serialize($row);
+                                            $row = unserialize($row);
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row->nome; ?></td>
+                                                <td><?php echo $row->especialidade; ?></td>
+                                                <td><?php echo $row->cargaHoraria; ?></td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm"
+                                                        onclick="visualizarFuncionario('Funcionário A')">Visualizar</button>
+                                                    <button class="btn btn-warning btn-sm"
+                                                        onclick="editarFuncionario('Funcionário A')">Editar</button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } ?>
+                                </tbody>
+                            </table>
+                            
+                            <button class="btn" data-toggle="modal" data-target="#funcionarioModal">Adicionar
+                                Funcionário</button>
+                        </div>
                     </div>
 
-                    <table class="table table-bordered" id="lista-funcionarios">
-                        <thead>
-                            <tr>
-                                <th>Nome Completo</th>
-                                <th>Especialidade</th>
-                                <th>Carga Horária</th>
-                            </tr>
-                        </thead>
-                        <tbody id="lista-funcionarios">
-                            <!-- Dados dos funcionários serão carregados aqui -->
-                            <!-- Exemplo de um funcionário -->
-                            <?php
-                            if (isset($_SESSION['funcionario'])) {
-                                $a = $_SESSION['funcionario'];
-                                foreach ($a as $row) {
-                                    $row = serialize($row);
-                                    $row = unserialize($row);
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $row->nome; ?></td>
-                                        <td><?php echo $row->especialidade; ?></td>
-                                        <td><?php echo $row->cargaHoraria; ?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            } ?>
-                        </tbody>
-                    </table>
-
-                    <button class="btn" data-toggle="modal" data-target="#funcionarioModal">Adicionar
-                        Funcionário</button>
                 </div>
             </div>
         </section>

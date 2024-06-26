@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedTech - Funcionário</title>
+    <title>MedTech | Plantão</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -28,10 +28,10 @@
     <link rel="stylesheet" href="tema/admin/plugins/summernote/summernote-bs4.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="tema/admin/css/styles.css">
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
     <?php
     include_once ('tema/admin/includes/menulateral.php');
     ?>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a>Funcionário</a></li>
+                            <li class="breadcrumb-item"><a>Plantão</a></li>
                             <li class="breadcrumb-item active">Cadastro</li>
                         </ol>
                     </div>
@@ -57,92 +57,57 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="section-content">
-                    <h2 class="section-title">Funcionários</h2>
-                    <!-- Filtro de Pesquisa -->
-                    <div class="form-group">
-                        <label for="search-funcionario">Pesquisar</label>
-                        <input type="text" class="form-control" id="search-funcionario"
-                            placeholder="Nome ou Especialidade">
-                    </div>
+                <div class="row">
+                    <div class="container mt-5">
+                        <div class="section-content">
+                            <h2 class="section-title">Lista de Plantões</h2>
 
-                    <table class="table table-bordered" id="lista-funcionarios">
-                        <thead>
-                            <tr>
-                                <th>Nome Completo</th>
-                                <th>Especialidade</th>
-                                <th>Carga Horária</th>
-                            </tr>
-                        </thead>
-                        <tbody id="lista-funcionarios">
-                            <!-- Dados dos funcionários serão carregados aqui -->
-                            <!-- Exemplo de um funcionário -->
-                            <?php
-                            if (isset($_SESSION['funcionario'])) {
-                                $a = $_SESSION['funcionario'];
-                                foreach ($a as $row) {
-                                    $row = serialize($row);
-                                    $row = unserialize($row);
-                                    ?>
+                            <!-- Filtro de Pesquisa -->
+                            <div class="form-group">
+                                <label for="search-plantao">Pesquisar</label>
+                                <input type="text" class="form-control" id="search-plantao"
+                                    placeholder="Escala ou Departamento">
+                            </div>
+
+                            <table class="table table-bordered">
+                                <thead>
                                     <tr>
-                                        <td><?php echo $row->nome; ?></td>
-                                        <td><?php echo $row->especialidade; ?></td>
-                                        <td><?php echo $row->cargaHoraria; ?></td>
+                                        <th>Escala</th>
+                                        <th>Departamento</th>
+                                        <th>Unidade</th>
+                                        <th>Falta</th>
+                                        <th>Funcionário Remanejado</th>
+                                        <th>Dobra</th>
+                                        <th>Prescritor</th>
+                                        <th>Ações</th>
                                     </tr>
-                                    <?php
-                                }
-                            } ?>
-                        </tbody>
-                    </table>
-
-                    <button class="btn" data-toggle="modal" data-target="#funcionarioModal">Adicionar
-                        Funcionário</button>
+                                </thead>
+                                <tbody id="lista-plantoes">
+                                    <!-- Dados dos plantões serão carregados aqui -->
+                                    <!-- Exemplo de um plantão -->
+                                    <tr>
+                                        <td>Escala A</td>
+                                        <td>Departamento A</td>
+                                        <td>Unidade A</td>
+                                        <td>Não</td>
+                                        <td>Não</td>
+                                        <td>Sim</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm"
+                                                onclick="visualizarPlantao('Escala A')">Visualizar</button>
+                                            <button class="btn btn-warning btn-sm"
+                                                onclick="editarPlantao('Escala A')">Editar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- Modal para Cadastro de Funcionário -->
-        <div class="modal fade" id="funcionarioModal" tabindex="-1" aria-labelledby="funcionarioModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="funcionarioModalLabel">Cadastrar Funcionário</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="index.php?c=funcionario&a=cadastro" method="post" id="form-funcionario">
-                            <div class="form-group">
-                                <label for="nome_completo">Nome Completo</label>
-                                <input type="text" class="form-control" id="nome_completo" name="nome" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="especialidade">Especialidade</label>
-                                <input type="text" class="form-control" id="especialidade" name="especialidade"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="matricula">Matrícula</label>
-                                <input type="text" class="form-control" id="matricula" name="matricula" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cpf">CPF</label>
-                                <input type="text" class="form-control" id="cpf" name="cpf" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="carga_horaria">Carga Horária</label>
-                                <input type="text" class="form-control" id="carga_horaria" name="cargaHoraria" required>
-                            </div>
-                            <button type="submit" class="btn">Salvar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <strong>Copyright &copy; 2024 <a href="#">MedTech</a>.</strong>
@@ -151,23 +116,23 @@
             <b>Versão</b> 1.0.0
         </div>
     </footer>
-
-
     <script>
-        document.getElementById('search-funcionario').addEventListener('keyup', function () {
+        // Função para filtrar os plantões
+        document.getElementById('search-plantao').addEventListener('keyup', function () {
             const searchValue = this.value.toLowerCase();
-            const rows = document.querySelectorAll('#lista-funcionarios tbody tr');
+            const rows = document.querySelectorAll('#lista-plantoes tr');
 
             rows.forEach(row => {
-                const nomeCompleto = row.cells[0].textContent.toLowerCase();
-                const especialidade = row.cells[1].textContent.toLowerCase();
-                if (nomeCompleto.includes(searchValue) || especialidade.includes(searchValue)) {
+                const scale = row.cells[0].textContent.toLowerCase();
+                const deptName = row.cells[1].textContent.toLowerCase();
+                if (scale.includes(searchValue) || deptName.includes(searchValue)) {
                     row.style.display = '';
                 } else {
                     row.style.display = 'none';
                 }
             });
         });
+
     </script>
 
     <!-- JavaScript -->
