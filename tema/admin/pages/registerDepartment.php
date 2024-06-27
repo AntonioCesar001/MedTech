@@ -117,20 +117,33 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="form-departamento">
+                                <form action="index.php?c=departamento&a=cadastro" method="post" id="form-departamento">
                                     <div class="form-group">
                                         <label for="nome_departamento">Nome do Departamento</label>
                                         <input type="text" class="form-control" id="nome_departamento"
-                                            name="nome_departamento" required>
+                                            name="nome" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="unidade_departamento">Unidade</label>
-                                        <input type="text" class="form-control" id="unidade_departamento"
-                                            name="unidade_departamento" required>
+                                        <select class="form-control" id="unidade_departamento"
+                                        name="idUnidade">
+                                        <option></option>
+                                        <?php
+                                            if (isset($_SESSION['unidade'])) {
+                                                $a = $_SESSION['unidade'];
+                                                foreach ($a as $row) {
+                                                    $row = serialize($row);
+                                                    $row = unserialize($row);
+                                                    ?>
+                                                    <option value="<?php echo $row->idUnidade; ?>" ><?php echo $row->nome_unidade; ?></option>
+                                                    <?php
+                                                }
+                                            } ?>
+                                            </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="num_leitos">Número de Leitos</label>
-                                        <input type="number" class="form-control" id="num_leitos" name="num_leitos"
+                                        <input type="number" class="form-control" id="num_leitos" name="numero_leito"
                                             required>
                                     </div>
                                     <div class="form-group">
@@ -141,11 +154,21 @@
                                     <div class="form-group">
                                         <label for="leitos_ocupados">Leitos Ocupados</label>
                                         <input type="number" class="form-control" id="leitos_ocupados"
-                                            name="leitos_ocupados" required>
+                                            name="leito_ocupado" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="num_obitos">Número de Óbitos</label>
-                                        <input type="number" class="form-control" id="num_obitos" name="num_obitos"
+                                        <input type="number" class="form-control" id="num_obitos" name="numero_obito"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="num_admissao">Admissões</label>
+                                        <input type="number" class="form-control" id="num_admissao" name="admissao"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="num_procedimentos_realizados">Procedimentos Realizados</label>
+                                        <input type="number" class="form-control" id="num_procedimentos_realizados" name="procedimentos_realizados"
                                             required>
                                     </div>
                                     <button type="submit" class="btn">Salvar</button>
@@ -154,7 +177,7 @@
                         </div>
                     </div>
                 </div>
-                < </div>
+             </div>
         </section>
     </div>
     <!-- /.content-wrapper -->

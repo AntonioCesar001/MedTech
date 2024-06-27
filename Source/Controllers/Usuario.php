@@ -40,7 +40,12 @@ class Usuario
    * 
    * @return string O caminho da pagina de login
    */
-  public function viewLogIn()
+  
+   public function viewForget() 
+   {
+    return 'tema/admin/pages/forget-password.php';
+   }
+   public function viewLogIn()
   {
     //Retorna para tela de login principal do site...
     return "tema/admin/pages/login.php";

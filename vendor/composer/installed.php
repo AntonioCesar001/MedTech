@@ -3,7 +3,7 @@
         'name' => 'maternidade/maternidade',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '739be3495f75bcebeb19067bc350a4e02b188726',
+        'reference' => '84f4f9c7585f21454dbcf65f003a7cbfec3d1a3a',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'maternidade/maternidade' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '739be3495f75bcebeb19067bc350a4e02b188726',
+            'reference' => '84f4f9c7585f21454dbcf65f003a7cbfec3d1a3a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

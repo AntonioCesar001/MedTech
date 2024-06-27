@@ -31,8 +31,10 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <?php
+<?php
+    // Incluir o menu lateral
     include_once ('tema/admin/includes/menulateral.php');
+    include_once('Source/Core/Helpers.php');
     ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -84,12 +86,13 @@
                                 foreach ($a as $row) {
                                     $row = serialize($row);
                                     $row = unserialize($row);
+                                    $dataFormatadaParaBR = datetobr($row->data_escala);
                                     ?>
                                     <tr>
                                         <td><?php echo $row->nome_unidade; ?></td>
                                         <td><?php echo $row->nome_departamento; ?></td>
                                         <td><?php echo $row->turno; ?></td>
-                                        <td><?php echo $row->data_escala; ?></td>
+                                        <td><?php echo $dataFormatadaParaBR; ?></td>
                                     </tr>
                                     <?php
                                 }
@@ -113,18 +116,51 @@
                             <div class="modal-body">
                                 <form id="form-escala">
                                     <div class="form-group">
-                                        <label for="departamento_escala">Departamento</label>
-                                        <input type="text" class="form-control" id="departamento_escala"
-                                            name="departamento_escala" required>
+                                        <label for="unidade_escala">Unidade</label>
+                                        <select class="form-control" id="unidade_escala" name="idUnidade">
+                                            <option></option>
+                                            <?php
+                                            if (isset($_SESSION['unidade'])) {
+                                                $a = $_SESSION['unidade'];
+                                                foreach ($a as $row) {
+                                                    $row = serialize($row);
+                                                    $row = unserialize($row);
+                                                    ?>
+                                                    <option value="<?php echo $row->idUnidade; ?>">
+                                                        <?php echo $row->nome_unidade; ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                            } ?>
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="unidade_escala">Unidade</label>
-                                        <input type="text" class="form-control" id="unidade_escala"
-                                            name="unidade_escala" required>
+                                        <label for="departamento_escala">Departamento</label>
+                                        <select class="form-control" id="departamento_escala" name="idDepartamento">
+                                            <option></option>
+                                            <?php
+                                            if (isset($_SESSION['departamento'])) {
+                                                $a = $_SESSION['departamento'];
+                                                foreach ($a as $row) {
+                                                    $row = serialize($row);
+                                                    $row = unserialize($row);
+                                                    ?>
+                                                    <option value="<?php echo $row->idDepartamento; ?>">
+                                                        <?php echo $row->nome_departamento; ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                            } ?>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="turno">Turno</label>
-                                        <input type="text" class="form-control" id="turno" name="turno" required>
+                                        <select class="form-control" id="turno" name="turno">
+                                            <option></option>
+                                            <option value="SD">SD</option>
+                                            <option value="MT">MT</option>
+                                            <option value="SN">SN</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="data_escala">Data da Escala</label>

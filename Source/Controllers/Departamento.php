@@ -57,7 +57,7 @@ class Departamento
    * principal de login , com a mensagem de erro e o tipo da 
    * mensagem na url 
    */
-  public function registration(string $idUnidade, string $nome, string $numero_leito, string $alta_prevista, string $leito_ocupado, string $numero_obito)
+  public function registration(int $idUnidade, string $nome, int $numero_leito, int $alta_prevista, int $leito_ocupado, int $numero_obito , int $admissao , int $procedimentos_realizados)
   {
     //Salvar no banco de dados os valores recebidos
     $this->departamento->idUnidade = $idUnidade;
@@ -66,6 +66,8 @@ class Departamento
     $this->departamento->alta_prevista = $alta_prevista;
     $this->departamento->leito_ocupado = $leito_ocupado;
     $this->departamento->numero_obito = $numero_obito;
+    $this->departamento->admissao = $admissao;
+    $this->departamento->procedimentos_realizados = $procedimentos_realizados;
 
     $this->departamento->save();
 
@@ -85,7 +87,10 @@ class Departamento
     //para armazenar a lista de departamentos cadastrados
     if ($_SESSION['usuario']) {
       $list = $this->departamento->all();
+      $listNameUnit = $this->unidade->nameUnit();
+      
       $_SESSION['departamento'] = $list;
+      $_SESSION['unidade'] = $listNameUnit;
     }
     if ($_SESSION['contador']) {
       return $this->viewAll();

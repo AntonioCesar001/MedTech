@@ -12,7 +12,7 @@
     <!-- Define a configuração da viewport para garantir que o site seja responsivo em dispositivos móveis -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Inclui a biblioteca de ícones do Font Awesome -->
-    <link rel="stylesheet" href="tema/admin/css/style1.css">
+    <link rel="stylesheet" href="tema/admin/css/styleLogin.css">
     <!-- Inclui o arquivo CSS externo para estilização da página -->
     <title>MedTech | Login</title>
     <!-- Define o título da página que aparece na aba do navegador -->
@@ -111,7 +111,7 @@
                 <!-- Campo de entrada para o email -->
                 <input type="password" placeholder="Senha" name="senha">
                 <!-- Campo de entrada para a senha -->
-                <a href="forget-password.html">Esqueceu sua senha?</a>
+                <a href="index.php?c=usuario&a=recuperar">Esqueceu sua senha?</a>
                 <!-- Link para recuperação de senha -->
                 <button>Entrar</button>
                 <!-- Botão para enviar o formulário de login -->
@@ -144,7 +144,7 @@
         </div>
     </div>
 
-    <script src="tema/admin/dist/js/script1.js"></script>
+    <script src="tema/admin/dist/js/scriptLogin.js"></script>
     <!-- Inclui o arquivo JavaScript externo para adicionar funcionalidades à página -->
 </body>
 </html>

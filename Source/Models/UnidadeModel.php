@@ -443,4 +443,33 @@ class UnidadeModel extends Model
         return true;
     }
 
+    /**
+     * Retorna todos os nomes de unidade da tabela.
+     *
+     * @return array|null Um array de objetos UnidadeModel, ou null caso não haja registros na tabela.
+     */
+    public function nameUnit(): ?array
+    {
+        // Prepara a query de seleção de todos os registros
+        $sql = "SELECT DISTINCT nome as nome_unidade , idUnidade FROM " . self::$entity;
+
+        // Executa a query de seleção de todos os registros
+        $stmt = $this->read($sql);
+
+        // Se houver falhas ou não tiver registros na tabela, retorna null.
+        if ($this->getFail()) {
+            $this->typeMessage = "error";
+            $this->message = "Ooops algo deu errado!";
+            return null;
+        }
+        if (!$stmt->rowCount()) {
+            $this->typeMessage = "warning";
+            $this->message = "Nenhuma unidade foi encontrado!";
+            return null;
+        }
+
+        // Retorna os registros da tabela
+        $this->message = "A consulta foi feita com sucesso!";
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
+    }
 }

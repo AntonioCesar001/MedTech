@@ -33,6 +33,10 @@ if (isset($_GET['c']) && isset($_GET['a'])) {
 switch ($c) {
     case 'usuario':
         switch ($a) {
+            case 'recuperar':
+                $controller = new Usuario();
+                include $controller->viewForget();
+                break;
             case 'logar':
                 $controller = new Usuario();
                 $controller->login($_POST['email'], $_POST['senha'], $_POST['remember']);
@@ -106,7 +110,9 @@ switch ($c) {
                     ,
                     $_POST['alta_prevista'],
                     $_POST['leito_ocupado'],
-                    $_POST['numero_obito']
+                    $_POST['numero_obito'],
+                    $_POST['admissao'],
+                    $_POST['procedimentos_realizados']
                 );
                 break;
             case 'registro':

@@ -11,7 +11,7 @@
 
 /* Estilo para o corpo da página */
 body{
-    background: url('../dist/img/teste.jpg') no-repeat center center fixed; /* Imagem de fundo centralizada e fixa */
+    background: url('../dist/img/loginBackground.jpg') no-repeat center center fixed; /* Imagem de fundo centralizada e fixa */
     background-size: cover; /* A imagem cobre toda a área de fundo */
     display: flex; /* Usa layout flexível */
     align-items: center; /* Alinha itens verticalmente ao centro */

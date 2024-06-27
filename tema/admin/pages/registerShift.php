@@ -77,7 +77,6 @@
                                 <th>Funcionários Remanejados</th>
                                 <th>Dobras</th>
                                 <th>Prescritor</th>
-
                             </tr>
                         </thead>
                         <tbody id="lista-plantoes">

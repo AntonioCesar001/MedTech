@@ -84,7 +84,9 @@ class DepartamentoModel extends Model
                 . "numero_leito,"
                 . "alta_prevista,"
                 . "leito_ocupado,"
-                . "numero_obito)"
+                . "numero_obito,"
+                . "admissao,"
+                . "procedimentos_realizados)"
                 . " VALUES (:"
                 . self::$idUnit
                 . ","
@@ -92,7 +94,10 @@ class DepartamentoModel extends Model
                 . "numero_leito,:"
                 . "alta_prevista,:"
                 . "leito_ocupado,:"
-                . "numero_obito)";
+                . "numero_obito,:"
+                . "admissao,:"
+                . "procedimentos_realizados)";
+
 
             // Define os parâmetros da query
             $params = ":"
@@ -101,7 +106,10 @@ class DepartamentoModel extends Model
                 . "numero_leito={$this->data->numero_leito}&:"
                 . "alta_prevista={$this->data->alta_prevista}&:"
                 . "leito_ocupado={$this->data->leito_ocupado}&:"
-                . "numero_obito={$this->data->numero_obito}";
+                . "numero_obito={$this->data->numero_obito}&:"
+                . "admissao={$this->data->admissao}&:"
+                . "procedimentos_realizados={$this->data->procedimentos_realizados}";
+                
 
             // Executa a query de inserção do registro e armazena o ultimo id inserido 
             $idDepartamento = $this->create($query, $params);
@@ -299,5 +307,35 @@ class DepartamentoModel extends Model
         // Retorna os registros da tabela
         return $findById->fetchObject(__CLASS__);
 
+    }
+
+    /**
+     * Retorna todos os nomes de Departamento da tabela.
+     *
+     * @return array|null Um array de objetos DepartamentoModel, ou null caso não haja registros na tabela.
+     */
+    public function nameDepartment(): ?array
+    {
+        // Prepara a query de seleção de todos os registros
+        $sql = "SELECT DISTINCT nome as nome_departamento , idDepartamento FROM " . self::$entity;
+
+        // Executa a query de seleção de todos os registros
+        $stmt = $this->read($sql);
+
+        // Se houver falhas ou não tiver registros na tabela, retorna null.
+        if ($this->getFail()) {
+            $this->typeMessage = "error";
+            $this->message = "Ooops algo deu errado!";
+            return null;
+        }
+        if (!$stmt->rowCount()) {
+            $this->typeMessage = "warning";
+            $this->message = "Nenhuma unidade foi encontrado!";
+            return null;
+        }
+
+        // Retorna os registros da tabela
+        $this->message = "A consulta foi feita com sucesso!";
+        return $stmt->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
 }

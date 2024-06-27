@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Forgot Password - Site Zoon</title>
+    <title>MedTech - Recuperar Senha</title>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="tema/admin/img/faviconForget.ico">
 
-    <link rel="stylesheet" href="tema/admin/css/bootstrap5.css">
-    <link rel="stylesheet" href="tema/admin/css/style.css">
+    <link rel="stylesheet" href="tema/admin/css/bootstrapForget.css">
+    <link rel="stylesheet" href="tema/admin/css/styleForget.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,23 +22,23 @@
     <div class="container pt-5">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
-                <img src="images/main.png" alt="Main IMG" class="img-fluid">
+                <img src="tema/admin/dist/img/mainForget.png" alt="Main IMG" class="img-fluid">
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 pt-5">
                 <h2 class="main-text pt-5 mt-5">Recupere <br> Sua Senha</h2>
-                <input type="e-mail" placeholder="Insira seu E-mail" class="form-control main-input mt-5">
+                <input type="e-mail" placeholder="Insira seu E-mail" class="form-control main-input mt-5" name="email">
                 <div class="row">
                     <div class="col-3">
                         <button class="btn btn-sz-primary mt-5">Resetar</button>
                     </div>
                     <div class="col-6 pt-5">
-                        <a href="#" class="back-to-login">Voltar ao Login</a>
+                        <a href="index.php" class="back-to-login">Voltar ao Login</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap5.js"></script>
+    <script src="tema/admin/dist/js/jqueryForget.js"></script>
+    <script src="tema/admin/dist/js/bootstrapForget.js"></script>
 </html>
