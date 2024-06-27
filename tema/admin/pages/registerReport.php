@@ -124,7 +124,7 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <div class="container mt-5">
+                    <div class="table responsive" style="padding: 10%">
                         <h1>Plantão ADM MRC</h1>
                         <form class="col-md-12" action="index.php?c=relatorio&a=cadastro" method "post" id="plantao-form">
                             <!-- Pre-defined Content -->

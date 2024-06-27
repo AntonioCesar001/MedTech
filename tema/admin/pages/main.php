@@ -31,15 +31,15 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src="tema/admin/dist/img/medtech.jpg" alt="AdminLTELogo" height="60" width="60">
-    </div>
-    <?php
+<?php
     include_once ('tema/admin/includes/menulateral.php');
     if (isset($_SESSION['main'])) {
         $a = $_SESSION['main'];
         ?>
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__shake" src="tema/admin/dist/img/medtech.jpg" alt="AdminLTELogo" height="60" width="60">
+    </div>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->

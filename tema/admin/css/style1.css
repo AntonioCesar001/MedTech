@@ -1,0 +1,274 @@
+/* Importa a fonte 'Montserrat' do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Aplica estilo global a todos os elementos */
+*{
+    margin: 0; /* Remove margem padrão */
+    padding: 0; /* Remove padding padrão */
+    box-sizing: border-box; /* Inclui padding e borda no tamanho total do elemento */
+    font-family: 'Montserrat', sans-serif; /* Define a fonte 'Montserrat' para todos os elementos */
+}
+
+/* Estilo para o corpo da página */
+body{
+    background: url('../dist/img/teste.jpg') no-repeat center center fixed; /* Imagem de fundo centralizada e fixa */
+    background-size: cover; /* A imagem cobre toda a área de fundo */
+    display: flex; /* Usa layout flexível */
+    align-items: center; /* Alinha itens verticalmente ao centro */
+    justify-content: center; /* Alinha itens horizontalmente ao centro */
+    flex-direction: column; /* Direção dos itens em coluna */
+    height: 100vh; /* Altura da viewport */
+}
+
+.alert {
+    padding: 15px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.alert strong {
+    font-weight: bold;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Estilo para o contêiner principal */
+.container{
+    background-color: #fff; /* Cor de fundo branca */
+    border-radius: 30px; /* Bordas arredondadas */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Sombra ao redor do contêiner */
+    position: relative; /* Posicionamento relativo */
+    overflow: hidden; /* Oculta conteúdo que excede o contêiner */
+    width: 768px; /* Largura fixa */
+    max-width: 100%; /* Largura máxima de 100% */
+    min-height: 480px; /* Altura mínima */
+}
+
+/* Estilo para parágrafos dentro do contêiner */
+.container p{
+    font-size: 14px; /* Tamanho da fonte */
+    line-height: 20px; /* Altura da linha */
+    letter-spacing: 0.3px; /* Espaçamento entre letras */
+    margin: 20px 0; /* Margem superior e inferior */
+}
+
+/* Estilo para spans dentro do contêiner */
+.container span{
+    font-size: 12px; /* Tamanho da fonte */
+}
+
+/* Estilo para links dentro do contêiner */
+.container a{
+    color: #333; /* Cor do texto */
+    font-size: 13px; /* Tamanho da fonte */
+    text-decoration: none; /* Remove sublinhado */
+    margin: 15px 0 10px; /* Margem ao redor */
+}
+
+/* Estilo para botões dentro do contêiner */
+.container button{
+    background-color: #512da8; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    font-size: 12px; /* Tamanho da fonte */
+    padding: 10px 45px; /* Padding */
+    border: 1px solid transparent; /* Borda transparente */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-weight: 600; /* Peso da fonte */
+    letter-spacing: 0.5px; /* Espaçamento entre letras */
+    text-transform: uppercase; /* Texto em maiúsculas */
+    margin-top: 10px; /* Margem superior */
+    cursor: pointer; /* Cursor de ponteiro */
+}
+
+/* Estilo para botões com classe .hidden */
+.container button.hidden{
+    background-color: transparent; /* Fundo transparente */
+    border-color: #fff; /* Borda branca */
+}
+
+/* Estilo para formulários dentro do contêiner */
+.container form{
+    background-color: #fff; /* Cor de fundo branca */
+    display: flex; /* Layout flexível */
+    align-items: center; /* Alinhamento central vertical */
+    justify-content: center; /* Alinhamento central horizontal */
+    flex-direction: column; /* Direção em coluna */
+    padding: 0 40px; /* Padding horizontal */
+    height: 100%; /* Altura total */
+}
+
+/* Estilo para inputs dentro do contêiner */
+.container input{
+    background-color: #eee; /* Cor de fundo */
+    border: none; /* Sem borda */
+    margin: 8px 0; /* Margem vertical */
+    padding: 10px 15px; /* Padding */
+    font-size: 13px; /* Tamanho da fonte */
+    border-radius: 8px; /* Bordas arredondadas */
+    width: 100%; /* Largura total */
+    outline: none; /* Remove contorno */
+}
+
+/* Estilo para o contêiner do formulário */
+.form-container{
+    position: absolute; /* Posicionamento absoluto */
+    top: 0; /* Topo do pai */
+    height: 100%; /* Altura total */
+    transition: all 0.6s ease-in-out; /* Transição suave */
+}
+
+/* Estilo para a seção de sign-in */
+.sign-in{
+    left: 0; /* Alinhado à esquerda */
+    width: 50%; /* Largura de 50% */
+    z-index: 2; /* Índice Z */
+}
+
+/* Estilo para a seção de sign-in quando o contêiner está ativo */
+.container.active .sign-in{
+    transform: translateX(100%); /* Translação para a direita */
+}
+
+/* Estilo para a seção de sign-up */
+.sign-up{
+    left: 0; /* Alinhado à esquerda */
+    width: 50%; /* Largura de 50% */
+    opacity: 0; /* Invisível */
+    z-index: 1; /* Índice Z */
+}
+
+/* Estilo para a seção de sign-up quando o contêiner está ativo */
+.container.active .sign-up{
+    transform: translateX(100%); /* Translação para a direita */
+    opacity: 1; /* Visível */
+    z-index: 5; /* Índice Z superior */
+    animation: move 0.6s; /* Animação */
+}
+
+/* Animação para a seção de sign-up */
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0; /* Invisível */
+        z-index: 1; /* Índice Z inferior */
+    }
+    50%, 100%{
+        opacity: 1; /* Visível */
+        z-index: 5; /* Índice Z superior */
+    }
+}
+
+/* Estilo para ícones sociais */
+.social-icons{
+    margin: 20px 0; /* Margem vertical */
+}
+
+/* Estilo para links de ícones sociais */
+.social-icons a{
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 20%; /* Bordas arredondadas */
+    display: inline-flex; /* Layout flexível em linha */
+    justify-content: center; /* Alinhamento central horizontal */
+    align-items: center; /* Alinhamento central vertical */
+    margin: 0 3px; /* Margem horizontal */
+    width: 40px; /* Largura */
+    height: 40px; /* Altura */
+}
+
+/* Estilo para o contêiner de alternância */
+.toggle-container{
+    position: absolute; /* Posicionamento absoluto */
+    top: 0; /* Topo do pai */
+    left: 50%; /* Centralizado à esquerda */
+    width: 50%; /* Largura de 50% */
+    height: 100%; /* Altura total */
+    overflow: hidden; /* Oculta conteúdo excedente */
+    transition: all 0.6s ease-in-out; /* Transição suave */
+    border-radius: 150px 0 0 100px; /* Bordas arredondadas */
+    z-index: 1000; /* Índice Z superior */
+}
+
+/* Estilo para o contêiner de alternância quando ativo */
+.container.active .toggle-container{
+    transform: translateX(-100%); /* Translação para a esquerda */
+    border-radius: 0 150px 100px 0; /* Bordas arredondadas */
+}
+
+/* Estilo para a alternância */
+.toggle{
+    background-color: #512da8; /* Cor de fundo */
+    height: 100%; /* Altura total */
+    background: linear-gradient(to right, #5c6bc0, #512da8); /* Gradiente de fundo */
+    color: #fff; /* Cor do texto */
+    position: relative; /* Posicionamento relativo */
+    left: -100%; /* Inicialmente fora da tela */
+    height: 100%; /* Altura total */
+    width: 200%; /* Largura dobrada */
+    transform: translateX(0); /* Sem translação */
+    transition: all 0.6s ease-in-out; /* Transição suave */
+}
+
+/* Estilo para a alternância quando o contêiner está ativo */
+.container.active .toggle{
+    transform: translateX(50%); /* Translação para a direita */
+}
+
+/* Estilo para os painéis de alternância */
+.toggle-panel{
+    position: absolute; /* Posicionamento absoluto */
+    width: 50%; /* Largura de 50% */
+    height: 100%; /* Altura total */
+    display: flex; /* Layout flexível */
+    align-items: center; /* Alinhamento central vertical */
+    justify-content: center; /* Alinhamento central horizontal */
+    flex-direction: column; /* Direção em coluna */
+    padding: 0 30px; /* Padding horizontal */
+    text-align: center; /* Alinhamento de texto central */
+    top: 0; /* Topo do pai */
+    transform: translateX(0); /* Sem translação */
+    transition: all 0.6s ease-in-out; /* Transição suave */
+}
+
+/* Estilo para o painel de alternância à esquerda */
+.toggle-left{
+    transform: translateX(-200%); /* Inicialmente fora da tela à esquerda */
+}
+
+/* Estilo para o painel de alternância à esquerda quando ativo */
+.container.active .toggle-left{
+    transform: translateX(0); /* Translação para a posição original */
+}
+
+/* Estilo para o painel de alternância à direita */
+.toggle-right{
+    right: 0; /* Alinhado à direita */
+    transform: translateX(0); /* Sem translação */
+}
+
+/* Estilo para o painel de alternância à direita quando ativo */
+.container.active .toggle-right{
+    transform: translateX(200%); /* Translação para fora da tela à direita */
+}

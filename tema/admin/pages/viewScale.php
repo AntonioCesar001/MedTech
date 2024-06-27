@@ -57,7 +57,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="container mt-5">
+                    <div class="table responsive" style="padding: 1.5%">
                         <div class="section-content">
                             <h2 class="section-title">Lista de Escalas</h2>
 
@@ -81,18 +81,28 @@
                                 <tbody id="lista-escalas">
                                     <!-- Dados das escalas serão carregados aqui -->
                                     <!-- Exemplo de uma escala -->
-                                    <tr>
-                                        <td>Departamento A</td>
-                                        <td>Unidade A</td>
-                                        <td>Manhã</td>
-                                        <td>2024-06-06</td>
-                                        <td>
+                                    <?php
+                                    if (isset($_SESSION['escala'])) {
+                                        $a = $_SESSION['escala'];
+                                        foreach ($a as $row) {
+                                            $row = serialize($row);
+                                            $row = unserialize($row);
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row->nome_unidade; ?></td>
+                                                <td><?php echo $row->nome_departamento; ?></td>
+                                                <td><?php echo $row->turno; ?></td>
+                                                <td><?php echo $row->data_escala; ?></td>
+                                                <td>
                                             <button class="btn btn-info btn-sm"
                                                 onclick="visualizarEscala('Departamento A')">Visualizar</button>
                                             <button class="btn btn-warning btn-sm"
                                                 onclick="editarEscala('Departamento A')">Editar</button>
                                         </td>
-                                    </tr>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>

@@ -5,10 +5,11 @@ body {
     margin: 0;
 }
 
-h1 {
+h2 {
     text-align: center;
     color: #4CAF50;
     margin-bottom: 30px;
+    font-size: 3rem;
 }
 
 .section-title {
