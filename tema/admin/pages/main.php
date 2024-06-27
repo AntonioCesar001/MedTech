@@ -82,7 +82,7 @@
                                 <div class="icon">
                                     <i class="fas fa-stethoscope"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Mais informações <i
+                                <a href="index.php?c=departamento&a=visualizar" class="small-box-footer">Mais informações <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                                 <div class="icon">
                                     <i class="fas fa-file-medical"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Mais informações <i
+                                <a href="index.php?c=relatorio&a=visualizar" class="small-box-footer">Mais informações <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                                 <div class="icon">
                                     <i class="fas fa-user-md"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Mais informações <i
+                                <a href="index.php?c=funcionario&a=visualizar" class="small-box-footer">Mais informações <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                                 <div class="icon">
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">Mais informações <i
+                                <a href="index.php?c=escala&a=visualizar" class="small-box-footer">Mais informações <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>

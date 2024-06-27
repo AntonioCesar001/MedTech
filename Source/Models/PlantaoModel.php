@@ -66,23 +66,47 @@ class PlantaoModel extends Model
                 . self::$idScale . "=:" . self::$idScale . ","
                 . self::$idDepartment . "=:" . self::$idDepartment . ","
                 . self::$idUnit . "=:" . self::$idUnit . ","
-                . "falta=:falta,"
+                . "falta_tecnico=:falta_tecnico,"
                 . "func_remanejado=:func_remanejado,"
-                . "dobra=:dobra,"
-                . "prescritor=:prescritor"
+                . "dobra_funcionario=:dobra_funcionario,"
+                . "prescritor=:prescritor,"
+                . "enfermeiro=:enfermeiro,"
+                . "responsavel=:responsavel,"
+                . "data_plantao=:data_plantao,"
+                . "tecnico=:tecnico,"
+                . "medico_plantonista=:medico_plantonista,"
+                . "falta_enfermeiro=:falta_enfermeiro,"
+                . "falta_funcionario=:falta_funcionario,"
+                . "presente_funcionario=:presente_funcionario,"
+                . "dobra_tecnico=:dobra_tecnico,"
+                . "dobra_enfermeiro=:dobra_enfermeiro,"
+                . "leitos_ocupados=:leitos_ocupados,"
+                . "alta_prevista=:alta_prevista,"
+
                 . " WHERE " . self::$id . "=:" . self::$id;
 
             // Define os parâmetros da query
             $params = ":"
                 . self::$idScale . "={$this->data->idEscala}&:"
                 . self::$idDepartment . "={$this->data->idDepartamento}&:"
-                . self::$idUnit . "={$this->data->idUnidade}&:"
-                . "falta={$this->data->falta}&:"
-                . "func_remanejado={$this->data->func_remanejado}&:"
-                . "dobra={$this->data->dobra}&:"
-                . "prescritor={$this->data->prescritor}&:"
+                . self::$idUnit . "={$this->data->idUnidade}"
+                . "&:falta_tecnico={$this->data->falta_tecnico}"
+                . "&:func_remanejado={$this->data->func_remanejado}"
+                . "&:dobra_funcionario={$this->data->dobra_funcionario}"
+                . "&:prescritor={$this->data->prescritor}"
+                . "&:enfermeiro={$this->data->enfermeiro}"
+                . "&:responsavel={$this->data->responsavel}"
+                . "&:data_plantao={$this->data->data_plantao}"
+                . "&:tecnico={$this->data->tecnico}"
+                . "&:medico_plantonista={$this->data->medico_plantonista}"
+                . "&:falta_enfermeiro={$this->data->falta_enfermeiro}"
+                . "&:falta_funcionario={$this->data->falta_funcionario}"
+                . "&:presente_funcionario={$this->data->presente_funcionario}"
+                . "&:dobra_tecnico={$this->data->dobra_tecnico}"
+                . "&:dobra_enfermeiro={$this->data->dobra_enfermeiro}"
+                . "&:leitos_ocupados={$this->data->leitos_ocupados}"
+                . "&:alta_prevista={$this->data->alta_prevista}&:"
                 . self::$id . "={$this->data->idPlantao}";
-
 
             // Executa a query de atualização do registro, caso falhe armazena a mensagem e retorna null.
             if ($this->update($sql, $params)) {
@@ -101,28 +125,64 @@ class PlantaoModel extends Model
                 . self::$idScale . ","
                 . self::$idDepartment . ","
                 . self::$idUnit . ","
-                . "falta,"
+                . "falta_tecnico,"
                 . "func_remanejado,"
-                . "dobra,"
-                . "prescritor)"
+                . "dobra_funcionario,"
+                . "prescritor,"
+                . "enfermeiro,"
+                . "responsavel,"
+                . "data_plantao,"
+                . "tecnico,"
+                . "medico_plantonista,"
+                . "falta_enfermeiro,"
+                . "falta_funcionario,"
+                . "presente_funcionario,"
+                . "dobra_tecnico,"
+                . "dobra_enfermeiro,"
+                . "leitos_ocupados,"
+                . "alta_prevista)"
                 . " VALUES (:"
                 . self::$idScale . ",:"
                 . self::$idDepartment . ",:"
                 . self::$idUnit . ",:"
-                . "falta,:"
+                . "falta_tecnico,:"
                 . "func_remanejado,:"
-                . "dobra,:"
-                . "prescritor)";
+                . "dobra_funcionario,:"
+                . "prescritor,:"
+                . "enfermeiro,:"
+                . "responsavel,:"
+                . "data_plantao,:"
+                . "tecnico,:"
+                . "medico_plantonista,:"
+                . "falta_enfermeiro,:"
+                . "falta_funcionario,:"
+                . "presente_funcionario,:"
+                . "dobra_tecnico,:"
+                . "dobra_enfermeiro,:"
+                . "leitos_ocupados,:"
+                . "alta_prevista)";
 
             // Define os parâmetros da query
             $params = ":"
                 . self::$idScale . "={$this->data->idEscala}&:"
                 . self::$idDepartment . "={$this->data->idDepartamento}&:"
                 . self::$idUnit . "={$this->data->idUnidade}"
-                . "&:falta={$this->data->falta}"
+                . "&:falta_tecnico={$this->data->falta_tecnico}"
                 . "&:func_remanejado={$this->data->func_remanejado}"
-                . "&:dobra={$this->data->dobra}"
-                . "&:prescritor={$this->data->prescritor}";
+                . "&:dobra_funcionario={$this->data->dobra_funcionario}"
+                . "&:prescritor={$this->data->prescritor}"
+                . "&:enfermeiro={$this->data->enfermeiro}"
+                . "&:responsavel={$this->data->responsavel}"
+                . "&:data_plantao={$this->data->data_plantao}"
+                . "&:tecnico={$this->data->tecnico}"
+                . "&:medico_plantonista={$this->data->medico_plantonista}"
+                . "&:falta_enfermeiro={$this->data->falta_enfermeiro}"
+                . "&:falta_funcionario={$this->data->falta_funcionario}"
+                . "&:presente_funcionario={$this->data->presente_funcionario}"
+                . "&:dobra_tecnico={$this->data->dobra_tecnico}"
+                . "&:dobra_enfermeiro={$this->data->dobra_enfermeiro}"
+                . "&:leitos_ocupados={$this->data->leitos_ocupados}"
+                . "&:alta_prevista={$this->data->alta_prevista}";
 
             // Executa a query de inserção do registro e armazena o ultimo id inserido 
             $idPlantao = $this->create($query, $params);
@@ -178,17 +238,31 @@ class PlantaoModel extends Model
     {
         // Prepara a query de seleção de todos os registros
         $sql = "SELECT "
-        . "u.nome as nome_unidade , d.nome as nome_departamento , e.turno , e.data_escala , e.data_escala , (p.falta_presentes + p.falta_tecnico + p.falta_enfermeiro) as falta_presentes, (p.dobra_presentes + p.dobra_tecnico + p.dobra_enfermeiro) as dobra_presentes, p.prescritor , p.func_remanejado "
-        . "FROM "
-        . "plantao p "
-        . "Join "
-        . "departamento d ON p.idDepartamento = d.idDepartamento "
-        . "Join "
-        . "unidade u ON p.idUnidade = u.idUnidade "
-        . "Join "
-        . "escala e ON p.idEscala = e.idEscala "
-        . "WHERE "
-        . "e.idUnidade = u.idUnidade";
+            . "u.nome as nome_unidade , d.nome as nome_departamento , e.turno , e.data_escala , (p.falta_funcionario + p.falta_tecnico + p.falta_enfermeiro) as falta_presentes, (p.dobra_funcionario + p.dobra_tecnico + p.dobra_enfermeiro) as dobra_presentes, p.prescritor , p.func_remanejado , p.falta_tecnico,"
+            . "p.dobra_funcionario,"
+            . "p.prescritor,"
+            . "p.enfermeiro,"
+            . "p.responsavel,"
+            . "p.data_plantao,"
+            . "p.tecnico,"
+            . "p.medico_plantonista,"
+            . "p.falta_enfermeiro,"
+            . "p.falta_funcionario,"
+            . "p.presente_funcionario,"
+            . "p.dobra_tecnico,"
+            . "p.dobra_enfermeiro,"
+            . "p.leitos_ocupados,"
+            . "p.alta_prevista "
+            . "FROM "
+            . "plantao p "
+            . "Join "
+            . "departamento d ON p.idDepartamento = d.idDepartamento "
+            . "Join "
+            . "unidade u ON p.idUnidade = u.idUnidade "
+            . "Join "
+            . "escala e ON p.idEscala = e.idEscala "
+            . "WHERE "
+            . "e.idUnidade = u.idUnidade";
 
         // Executa a query de seleção de todos os registros
         $stmt = $this->read($sql);
@@ -375,7 +449,7 @@ class PlantaoModel extends Model
         return $findByScale->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
 
-    public function registerReport(): ?array
+    public function registerReport()
     {
         // Prepara a query de seleção de todos os registros com aquele
         $sql = "SELECT "
@@ -467,7 +541,7 @@ class PlantaoModel extends Model
             . "GROUP BY "
             . "p.idUnidade, e.data_escala"
             . "ORDER BY "
-            . "e.data_escala DESC, p.idUnidade ";	    
+            . "e.data_escala DESC, p.idUnidade ";
 
         // Executa a query de seleção de todos os registros
         $relatorio = $this->read($sql);
@@ -488,4 +562,6 @@ class PlantaoModel extends Model
         // Retorna os registros da tabela
         return $relatorio->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
+
+
 }

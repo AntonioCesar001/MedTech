@@ -34,6 +34,7 @@
 
     <?php
     include_once ('tema/admin/includes/menulateral.php');
+    include_once ('Source/Core/Helpers.php');
     ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -88,9 +89,10 @@
                                 foreach ($a as $row) {
                                     $row = serialize($row);
                                     $row = unserialize($row);
+                                    $dataFormatadaParaBR = datetobr($row->data_escala);
                                     ?>
                                     <tr>
-                                        <td><?php echo $row->data_escala; ?></td>
+                                        <td><?php echo $dataFormatadaParaBR; ?></td>
                                         <td><?php echo $row->nome_departamento; ?></td>
                                         <td><?php echo $row->nome_unidade; ?></td>
                                         <td><?php echo $row->falta_presentes; ?></td>
@@ -129,39 +131,62 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="departamento_plantao">Departamento</label>
-                                        <input type="text" class="form-control" id="departamento_plantao"
-                                            name="departamento_plantao" required>
+                                        <label for="unidade_escala">Unidade</label>
+                                        <select class="form-control" id="unidade_escala" name="idUnidade">
+                                            <option></option>
+                                            <?php
+                                            if (isset($_SESSION['unidade'])) {
+                                                $a = $_SESSION['unidade'];
+                                                foreach ($a as $row) {
+                                                    $row = serialize($row);
+                                                    $row = unserialize($row);
+                                                    ?>
+                                                    <option value="<?php echo $row->idUnidade; ?>">
+                                                        <?php echo $row->nome_unidade; ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                            } ?>
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="unidade_plantao">Unidade</label>
-                                        <input type="text" class="form-control" id="unidade_plantao"
-                                            name="unidade_plantao" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="funcionario_escalado">Funcionário Escalado</label>
-                                        <input type="text" class="form-control" id="funcionario_escalado"
-                                            name="funcionario_escalado" required>
+                                        <label for="departamento_escala">Departamento</label>
+                                        <select class="form-control" id="departamento_escala" name="idDepartamento">
+                                            <option></option>
+                                            <?php
+                                            if (isset($_SESSION['departamento'])) {
+                                                $a = $_SESSION['departamento'];
+                                                foreach ($a as $row) {
+                                                    $row = serialize($row);
+                                                    $row = unserialize($row);
+                                                    ?>
+                                                    <option value="<?php echo $row->idDepartamento; ?>">
+                                                        <?php echo $row->nome_departamento; ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                            } ?>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="falta">Falta</label>
-                                        <input type="text" class="form-control" id="escala_plantao"
-                                            name="escala_plantao" required>
+                                        <input type="text" class="form-control" id="falta" name="falta_funcionario"
+                                            required>
                                     </div>
                                     <div class="form-group">
                                         <label for="funcionario_remanejado">Funcionário Remanejado</label>
-                                        <input type="text" class="form-control" id="escala_plantao"
-                                            name="escala_plantao" required>
+                                        <input type="text" class="form-control" id="funcionario_remanejado"
+                                            name="func_remanejado" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="dobra">Dobra</label>
-                                        <input type="text" class="form-control" id="escala_plantao"
-                                            name="escala_plantao" required>
+                                        <input type="text" class="form-control" id="dobra" name="dobra_funcionario"
+                                            required>
                                     </div>
                                     <div class="form-group">
                                         <label for="prescritor">Prescritor</label>
-                                        <input type="text" class="form-control" id="escala_plantao"
-                                            name="escala_plantao" required>
+                                        <input type="text" class="form-control" id="prescritor" name="prescritor"
+                                            required>
                                     </div>
                                     <button type="submit" class="btn">Salvar</button>
                                 </form>
@@ -180,6 +205,7 @@
             <b>Versão</b> 1.0.0
         </div>
     </footer>
+
     <script>
         // Função para filtrar os plantões
         document.getElementById('search-plantao').addEventListener('keyup', function () {

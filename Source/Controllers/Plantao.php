@@ -2,6 +2,10 @@
 namespace Source\Controllers;
 
 use Source\Models\PlantaoModel;
+use Source\Models\DepartamentoModel;
+use Source\Models\UnidadeModel;
+use Source\Models\EscalaModel;
+
 
 ini_set("display_errors", 1);
 
@@ -19,9 +23,15 @@ class Plantao
    * do banco e facilitar o controle de dados do site...
    */
   private $plantao;
+  private $departamento;
+  private $unidade;
+  private $escala;
 
   public function __construct()
   {
+    $this->escala = new EscalaModel();
+    $this->departamento = new DepartamentoModel();
+    $this->unidade = new UnidadeModel();
     $this->plantao = new PlantaoModel();
   }
   /**
@@ -54,9 +64,13 @@ class Plantao
    * principal de login , com a mensagem de erro e o tipo da 
    * mensagem na url 
    */
-  public function registration(string $idEscala, string $idDepartamento, string $idUnidade, string $falta, string $func_remanejado, string $dobra, string $prescritor)
+  public function registration(string $idEscala, string $idDepartamento, string $idUnidade, string $falta, string $func_remanejado, string $dobra, string $prescritor , string $data_escala , string $turno)
   {
     //Salvar no banco de dados os valores recebidos
+    if ($this->escala->nameScale($data_escala , $turno , $idDepartamento)) {
+
+    }
+
     $this->plantao->idEscala = $idEscala;
     $this->plantao->idDepartamento = $idDepartamento;
     $this->plantao->idUnidade = $idUnidade;
@@ -83,7 +97,11 @@ class Plantao
     //para armazenar a lista de plantaos cadastrados
     if ($_SESSION['usuario']) {
       $list = $this->plantao->all();
+      $listNameUnit = $this->unidade->nameUnit();
+      $listNameDepartment = $this->departamento->nameDepartment();
       $_SESSION['plantao'] = $list;
+      $_SESSION['unidade'] = $listNameUnit;
+      $_SESSION['departamento'] = $listNameDepartment;
     }
     if ($_SESSION['contador']) {
       return $this->viewAll();

@@ -1,7 +1,6 @@
 <?php
 namespace Source\Controllers;
 
-use Source\Core\Helper;
 use Source\Models\DepartamentoModel;
 use Source\Models\EscalaModel;
 use Source\Models\UnidadeModel;
@@ -24,14 +23,12 @@ class Escala
   private $escala;
   private $departamento;
   private $unidade;
-  private $teste;
 
   public function __construct()
   {
     $this->escala = new EscalaModel();
     $this->departamento = new DepartamentoModel();
     $this->unidade = new UnidadeModel();
-    $this->teste = new \stdClass();
   }
   /**
    * A função foi criada com intuito de retornar a tela 
@@ -65,13 +62,11 @@ class Escala
    */
   public function registration(string $idDepartamento, string $idUnidade, string $turno, string $data_escala)
   {
-    Helper::init(); // Configure o fuso horário
-    //Salvar no banco de dados os valores recebidos
     $this->escala->idDepartamento = $idDepartamento;
     $this->escala->idUnidade = $idUnidade;
     $this->escala->turno = $turno;
 
-    $dataFormatadaParaBanco = Helper::datetodb($data_escala);
+    $dataFormatadaParaBanco = datetodb($data_escala);
 
     $this->escala->data_escala = $dataFormatadaParaBanco;
 

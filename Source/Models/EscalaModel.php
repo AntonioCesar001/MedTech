@@ -316,4 +316,66 @@ class EscalaModel extends Model
         return $findByIdDepartment->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
 
+    /**
+     * Retorna o objeto escala com seu id da tabela.
+     *
+     * @return object|null Um objeto de objetos EscalaModel, ou null caso não haja registros na tabela.
+     */
+    public function verifyScale(string $data_escala, string $turno , string $idDepartamento): ?EscalacaoModel
+    {
+        // Prepara a query de seleção de todos os registros
+        $sql = "SELECT DISTINCT idEscala FROM " . self::$entity ." WHERE 
+	data_escala = :data_escala and turno = :turno and idDepartamento = :idDepartamento";
+
+        $params = ":data_escala={$data_escala}&:turno={$turno}&:idDepartamento={$idDepartamento}";
+
+        // Executa a query de seleção de todos os registros
+        $stmt = $this->read($sql , $params);
+
+        // Se houver falhas ou não tiver registros na tabela, retorna null.
+        if ($this->getFail()) {
+            $this->typeMessage = "error";
+            $this->message = "Ooops algo deu errado!";
+            return null;
+        }
+        if (!$stmt->rowCount()) {
+            $this->typeMessage = "warning";
+            $this->message = "Nenhuma unidade foi encontrado!";
+            return null;
+        }
+
+        // Retorna os registros da tabela
+        $this->message = "A consulta foi feita com sucesso!";
+        return $stmt->fetchObject(__CLASS__);
+    }
+
+    /**
+     * Retorna um array de escalas com turno ,data_escala e idDepartamento.
+     *
+     * @return object|null Um objeto de objetos EscalaModel, ou null caso não haja registros na tabela.
+     */
+    public function nameScale(string $data_escala, string $turno , string $idDepartamento): ?EscalaModel
+    {
+        // Prepara a query de seleção de todos os registros
+        $sql = "SELECT DISTINCT idEscala , turno , data_escala FROM " . self::$entity;
+
+        // Executa a query de seleção de todos os registros
+        $stmt = $this->read($sql);
+
+        // Se houver falhas ou não tiver registros na tabela, retorna null.
+        if ($this->getFail()) {
+            $this->typeMessage = "error";
+            $this->message = "Ooops algo deu errado!";
+            return null;
+        }
+        if (!$stmt->rowCount()) {
+            $this->typeMessage = "warning";
+            $this->message = "Nenhuma unidade foi encontrado!";
+            return null;
+        }
+
+        // Retorna os registros da tabela
+        $this->message = "A consulta foi feita com sucesso!";
+        return $stmt->fetchObject(__CLASS__);
+    }
 }

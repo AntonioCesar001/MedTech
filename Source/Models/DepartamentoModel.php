@@ -49,11 +49,13 @@ class DepartamentoModel extends Model
             // Prepara a query de inserção do registro
             $sql = "UPDATE " . self::$entity . " SET "
                 . self::$idUnit . "=:" . self::$idUnit
-                . ",nome=:nome "
+                . ", nome=:nome "
                 . ", numero_leito=:numero_leito "
                 . ", alta_prevista=:alta_prevista "
-                . ",leito_ocupado=:leito_ocupado "
+                . ", leito_ocupado=:leito_ocupado "
                 . ", numero_obito=:numero_obito "
+                . ", admissao=:admissao "
+                . ", procedimentos_realizados=:procedimentos_realizados "
                 . " WHERE " . self::$id . "=:" . self::$id;
 
             // Define os parâmetros da query
@@ -63,7 +65,10 @@ class DepartamentoModel extends Model
                 . "alta_prevista={$this->data->alta_prevista}&:"
                 . "leito_ocupado={$this->data->leito_ocupado}&:"
                 . "numero_obito={$this->data->numero_obito}&:"
+                . "admissao={$this->data->admissao}&:"
+                . "procedimentos_realizados={$this->data->procedimentos_realizados}&:"
                 . self::$id . "={$this->data->idDepartamento}";
+
 
             // Executa a query de atualização do registro, caso falhe armazena a mensagem e retorna null.
             if ($this->update($sql, $params)) {
@@ -109,7 +114,7 @@ class DepartamentoModel extends Model
                 . "numero_obito={$this->data->numero_obito}&:"
                 . "admissao={$this->data->admissao}&:"
                 . "procedimentos_realizados={$this->data->procedimentos_realizados}";
-                
+
 
             // Executa a query de inserção do registro e armazena o ultimo id inserido 
             $idDepartamento = $this->create($query, $params);
@@ -165,7 +170,7 @@ class DepartamentoModel extends Model
     {
         // Prepara a query de seleção de todos os registros
         $sql = "SELECT u.nome as nome_unidade , d.nome , d.admissao , d.alta_prevista , d.leito_ocupado , d.numero_leito , d.numero_obito , d.procedimentos_realizados "
-        ."FROM " . self::$entity . " d Join 	unidade u ON d.idUnidade = u.idUnidade where d.idUnidade = u.idunidade";
+            . "FROM " . self::$entity . " d Join 	unidade u ON d.idUnidade = u.idUnidade where d.idUnidade = u.idunidade";
 
         // Executa a query de seleção de todos os registros
         $stmt = $this->read($sql);
@@ -281,12 +286,12 @@ class DepartamentoModel extends Model
     {
         // Prepara a query de seleção de todos os registros com aquele
         $sql = "SELECT "
-        .   "count(idDepartamento) AS total_departamentos,"
-        .   "SUM(numero_leito) AS numero_leitos,"
-        .   "SUM(leito_ocupado) AS leitos_ocupados,"
-        .   "(SUM(numero_leito) - SUM(leito_ocupado)) AS qtd_leitos_livres "
-        .   "FROM " 
-        .   "departamento";
+            . "count(idDepartamento) AS total_departamentos,"
+            . "SUM(numero_leito) AS numero_leitos,"
+            . "SUM(leito_ocupado) AS leitos_ocupados,"
+            . "(SUM(numero_leito) - SUM(leito_ocupado)) AS qtd_leitos_livres "
+            . "FROM "
+            . "departamento";
 
         // Executa a query de seleção de todos os registros
         $findById = $this->read($sql);
