@@ -16,3 +16,4 @@ echo $objUsuMod->getFail();
 
 //$teste=$objUsuMod->findByEmail("aa@gmail.com");
 //var_dump($teste);abaa@gmail.com
+

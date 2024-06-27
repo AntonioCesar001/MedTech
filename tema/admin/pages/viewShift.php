@@ -34,6 +34,7 @@
 
     <?php
     include_once ('tema/admin/includes/menulateral.php');
+    include_once ('Source/Core/Helpers.php');
     ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -47,7 +48,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a>Plantão</a></li>
-                            <li class="breadcrumb-item active">Cadastro</li>
+                            <li class="breadcrumb-item active">Visualizar</li>
                         </ol>
                     </div>
                 </div>
@@ -85,21 +86,32 @@
                                 <tbody id="lista-plantoes">
                                     <!-- Dados dos plantões serão carregados aqui -->
                                     <!-- Exemplo de um plantão -->
-                                    <tr>
-                                        <td>Escala A</td>
-                                        <td>Departamento A</td>
-                                        <td>Unidade A</td>
-                                        <td>Não</td>
-                                        <td>Não</td>
-                                        <td>Sim</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <button class="btn btn-info btn-sm"
-                                                onclick="visualizarPlantao('Escala A')">Visualizar</button>
-                                            <button class="btn btn-warning btn-sm"
-                                                onclick="editarPlantao('Escala A')">Editar</button>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    if (isset($_SESSION['plantao'])) {
+                                        $a = $_SESSION['plantao'];
+                                        foreach ($a as $row) {
+                                            $row = serialize($row);
+                                            $row = unserialize($row);
+                                            $dataFormatadaParaBR = datetobr($row->data_escala);
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $dataFormatadaParaBR; ?></td>
+                                                <td><?php echo $row->nome_departamento; ?></td>
+                                                <td><?php echo $row->nome_unidade; ?></td>
+                                                <td><?php echo $row->falta_presentes; ?></td>
+                                                <td><?php echo $row->func_remanejado; ?></td>
+                                                <td><?php echo $row->dobra_presentes; ?></td>
+                                                <td><?php echo $row->prescritor; ?></td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm"
+                                                        onclick="visualizarPlantao('Escala A')">Visualizar</button>
+                                                    <button class="btn btn-warning btn-sm"
+                                                        onclick="editarPlantao('Escala A')">Editar</button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>

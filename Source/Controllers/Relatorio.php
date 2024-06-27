@@ -103,10 +103,10 @@ class Relatorio
     //Se houver sessão de usuario faz uma sessão de relatorio 
     //para armazenar a lista de relatorios cadastrados
     if ($_SESSION['usuario']) {
-      $array = $this->plantao->registerReport();
-      foreach ($array as $key => $value) {
-        $this->relatorio->$key = $value;
-      }
+      $this->relatorio = $this->plantao->readReport();
+      $_SESSION['relatorioView'] = $this->relatorio;
+
+      $this->relatorio = $this->plantao->registerReport();
       $_SESSION['relatorio'] = $this->relatorio;
     }
     if ($_SESSION['contador']) {
@@ -122,7 +122,7 @@ class Relatorio
   public function viewAll()
   {
     if (isset($_SESSION['usuario'])) {
-      if (!isset($_SESSION['relatorio']) || empty($_SESSION['contador'])) {
+      if (!isset($_SESSION['relatorioView']) || empty($_SESSION['contador'])) {
         $_SESSION['contador'] = true;
         return $this->listAll();
       }

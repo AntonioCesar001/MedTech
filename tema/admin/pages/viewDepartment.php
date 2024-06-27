@@ -46,7 +46,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a>Departamento</a></li>
-                            <li class="breadcrumb-item active">Cadastro</li>
+                            <li class="breadcrumb-item active">Visualizar</li>
                         </ol>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 <label for="search-departamento">Pesquisar</label>
                                 <input type="text" class="form-control" id="search-departamento"
-                                    placeholder="Nome ou Especialidade">
+                                    placeholder="Nome do Departamento ou Unidade">
                             </div>
 
                             <table class="table table-bordered" id="lista-departamentos">

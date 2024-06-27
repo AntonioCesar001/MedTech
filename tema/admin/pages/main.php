@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MedTech</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -47,7 +48,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>General Form</h1>
+                            <h1></h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -271,7 +272,7 @@
                             $row = unserialize($row);
                             if ($row->qtd_leitos_livres || $row->numero_leitos || $row->leitos_ocupados) {
                                 ?>
-                                                                            {
+                                                                                        {
                                     data: [
                                         <?= $row->leitos_ocupados; ?>,
                                         <?= $row->numero_leitos; ?>,
@@ -279,7 +280,7 @@
                                     ],
                                     backgroundColor: ['#f56954', '#00a65a', '#f39c12',],
                                 }
-                                                                            <?php
+                                                                                        <?php
                             }
                         }
     }
@@ -302,3 +303,5 @@
         })
     </script>
 </body>
+
+</html>
