@@ -60,15 +60,14 @@ class Escala
    * principal de login , com a mensagem de erro e o tipo da 
    * mensagem na url 
    */
-  public function registration(string $idDepartamento, string $idUnidade, string $turno, string $data_escala)
+  public function registration(int $idDepartamento, int $idUnidade, string $turno, string $data_escala)
   {
+    $teste = new \DateTime($data_escala);
+
     $this->escala->idDepartamento = $idDepartamento;
     $this->escala->idUnidade = $idUnidade;
     $this->escala->turno = $turno;
-
-    $dataFormatadaParaBanco = datetodb($data_escala);
-
-    $this->escala->data_escala = $dataFormatadaParaBanco;
+    $this->escala->data_escala = $teste->format('Y-m-d');
 
     $this->escala->save();
 

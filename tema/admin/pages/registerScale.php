@@ -71,8 +71,8 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Departamento</th>
                                 <th>Unidade</th>
+                                <th>Departamento</th>
                                 <th>Turno</th>
                                 <th>Data da Escala</th>
                             </tr>
@@ -114,7 +114,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="form-escala">
+                                <form action="index.php?c=escala&a=cadastro" id="form-escala" method="post">
                                     <div class="form-group">
                                         <label for="unidade_escala">Unidade</label>
                                         <select class="form-control" id="unidade_escala" name="idUnidade">
