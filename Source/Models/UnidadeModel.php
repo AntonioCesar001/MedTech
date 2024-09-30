@@ -29,7 +29,7 @@ class UnidadeModel extends Model
      * 
      * @var string
      */
-    private static $cnes = "cnes";
+    private static $Cnes = "cnes";
     /**
      * A variável foi criada com o objetivo de armazenar o nome do campo telefone do banco, para assim, facilitar a construção e replicação do código.
      * 
@@ -64,14 +64,14 @@ class UnidadeModel extends Model
             $sql = "UPDATE " . self::$entity . " SET "
                 . "nome=:nome ,"
                 . " endereco=:endereco ,"
-                . self::$cnes . "=:" . self::$cnes . " , "
+                . self::$Cnes . "=:" . self::$Cnes . " , "
                 . self::$telephone . "=:" . self::$telephone
                 . " WHERE " . self::$id . "=:" . self::$id;
 
             // Define os parâmetros da query
             $params = ":nome={$this->data->nome}&:"
                 . "endereco={$this->data->endereco}&:"
-                . self::$cnes . "={$this->data->cnes}&:"
+                . self::$Cnes . "={$this->data->cnes}&:"
                 . self::$telephone . "={$this->data->telefone}&:"
                 . self::$id . "={$this->data->idUnidade}";
 
@@ -101,18 +101,18 @@ class UnidadeModel extends Model
             $query = "INSERT INTO " . self::$entity . " ("
                 . "nome,"
                 . "endereco,"
-                . self::$cnes . ","
+                . self::$Cnes . ","
                 . self::$telephone
                 . ") VALUES (:"
                 . "nome,:"
                 . "endereco,:"
-                . self::$cnes . ",:"
+                . self::$Cnes . ",:"
                 . self::$telephone . ")";
 
             // Define os parâmetros da query
             $params = ":nome={$this->data->nome}&:"
                 . "endereco={$this->data->endereco}&:"
-                . self::$cnes . "={$this->data->cnes}&:"
+                . self::$Cnes . "={$this->data->cnes}&:"
                 . self::$telephone . "={$this->data->telefone}";
 
             // Executa a query de inserção do registro e armazena o ultimo id inserido 
@@ -227,10 +227,10 @@ class UnidadeModel extends Model
     public function findByCnes(int $cnes_param): ?array
     {
         // Prepara a query de seleção de todos os registros com aquele
-        $sql = "SELECT * FROM " . self::$entity . " WHERE " . self::$cnes . "=:" . self::$cnes;
+        $sql = "SELECT * FROM " . self::$entity . " WHERE " . self::$Cnes . "=:" . self::$Cnes;
 
         // Define os parâmetros da query
-        $params = ":" . self::$cnes . "={$cnes_param}";
+        $params = ":" . self::$Cnes . "={$cnes_param}";
 
         // Executa a query de seleção de todos os registros
         $findByCnes = $this->read($sql, $params);
@@ -323,11 +323,11 @@ class UnidadeModel extends Model
         if (!empty($id)) {
 
             // Prepara a query de seleção de todos os registros com aquele cnes e id fornecido
-            $sql = "SELECT * FROM " . self::$entity . " WHERE " . self::$cnes . "=:"
-                . self::$cnes . " AND " . self::$id . " !=:" . self::$id;
+            $sql = "SELECT * FROM " . self::$entity . " WHERE " . self::$Cnes . "=:"
+                . self::$Cnes . " AND " . self::$id . " !=:" . self::$id;
 
             // Define os parâmetros da query
-            $params = ":" . self::$cnes . "={$cnes_param}&:" . self::$id . "={$id}";
+            $params = ":" . self::$Cnes . "={$cnes_param}&:" . self::$id . "={$id}";
 
             // Executa a query de seleção de todos os registros
             $Verifycnes = $this->read($sql, $params);
@@ -350,10 +350,10 @@ class UnidadeModel extends Model
         if (empty($id)) {
 
             // Prepara a query de seleção de todos os registros com aquele cnes fornecido
-            $sql = "SELECT * FROM " . self::$entity . " WHERE " . self::$cnes . "=:" . self::$cnes;
+            $sql = "SELECT * FROM " . self::$entity . " WHERE " . self::$Cnes . "=:" . self::$Cnes;
 
             // Define os parâmetros da query
-            $params = ":" . self::$cnes . "={$cnes_param}";
+            $params = ":" . self::$Cnes . "={$cnes_param}";
 
             // Executa a query de seleção de todos os registros
             $Verifycnes = $this->read($sql, $params);

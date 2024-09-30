@@ -4,7 +4,7 @@ namespace Source\Controllers;
 use Source\Models\UsuarioModel;
 use Source\Models\DepartamentoModel;
 use Source\Models\FuncionarioModel;
-use Source\Models\PlantaoModel;
+use Source\Models\EscalaModel;
 
 ini_set("display_errors", 1);
 
@@ -31,7 +31,7 @@ class Usuario
     $this->usuario = new UsuarioModel();
     $this->departamento = new DepartamentoModel();
     $this->funcionario = new FuncionarioModel();
-    $this->plantao = new PlantaoModel();
+    $this->plantao = new EscalaModel();
     $this->main = new \stdClass();
   }
   /**
@@ -200,7 +200,7 @@ class Usuario
     if ($_SESSION['usuario']) {
       $qtyEmployee = $this->funcionario->countEmployee();
       $qtyDepartments = $this->departamento->countDepartments();
-      $qtyReport = $this->plantao->countReport();
+      $qtyReport = $this->plantao->countScale();
 
       // Armazene os objetos na sessão
       $teste = array(

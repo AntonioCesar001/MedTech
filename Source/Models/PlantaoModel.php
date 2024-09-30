@@ -484,38 +484,6 @@ class PlantaoModel extends Model
         return $relatorio->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
 
-    public function countReport()
-    {
-        // Prepara a query de seleção de todos os registros com aquele
-        $sql = "SELECT "
-            . "count(*) AS qtd_relatorio "
-            . "FROM "
-            . "plantao as p "
-            . "INNER JOIN "
-            . "escala as e ON p.idEscala = e.idEscala "
-            . "WHERE "
-            . "DATE(data_escala) = CURDATE()";
-
-        // Executa a query de seleção de todos os registros
-        $findById = $this->read($sql);
-
-        // Se houver falhas ou não tiver registros na tabela, retorna null.
-        if ($this->getFail()) {
-            $this->typeMessage = "error";
-            $this->message = "Ooops algo deu errado!";
-            return null;
-        }
-        if (!$findById->rowCount()) {
-            $this->typeMessage = "warning";
-            $this->message = "Nenhum relatório foi encontrado!";
-            return null;
-        }
-        $this->typeMessage = "sucess";
-        $this->message = "A consulta foi feita com sucesso!";
-        // Retorna os registros da tabela
-        return $findById->fetchObject(__CLASS__);
-    }
-
     public function readReport(): ?array
     {
         // Prepara a query de seleção de todos os registros com aquele

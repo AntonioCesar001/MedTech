@@ -97,9 +97,11 @@ class Plantao
     //para armazenar a lista de plantaos cadastrados
     if ($_SESSION['usuario']) {
       $list = $this->plantao->all();
+      $listScale = $this->escala->all();
       $listNameUnit = $this->unidade->nameUnit();
       $listNameDepartment = $this->departamento->nameDepartment();
       $_SESSION['plantao'] = $list;
+      $_SESSION['escala'] = $listScale;
       $_SESSION['unidade'] = $listNameUnit;
       $_SESSION['departamento'] = $listNameDepartment;
     }

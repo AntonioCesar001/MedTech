@@ -28,13 +28,70 @@
     <link rel="stylesheet" href="tema/admin/plugins/summernote/summernote-bs4.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="tema/admin/css/styles.css">
+
+    <script>
+        function buscarDados() {
+            // Captura o valor selecionado no select
+            const valor = document.getElementById('consultaSelect').value;
+
+            // Verifica se uma opção válida foi selecionada
+            if (valor) {
+                // Cria a requisição AJAX
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', 'consulta.php?busca=' + valor, true);
+
+                // Define o que fazer quando a resposta chegar
+                xhr.onload = function () {
+                    if (this.status === 200) {
+                        // Exibe o resultado no HTML
+                        document.getElementById('resultado').innerHTML = this.responseText;
+                    }
+                };
+
+                // Envia a requisição
+                xhr.send();
+            } else {
+                // Limpa o resultado caso nenhuma opção válida seja selecionada
+                document.getElementById('resultado').innerHTML = "Selecione uma opção.";
+            }
+        }
+
+        // Adiciona o evento 'change' ao select para a consulta automática
+        window.onload = function () {
+            document.getElementById('consultaSelect').addEventListener('change', buscarDados);
+        }
+    </script>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <?php
-    include_once ('tema/admin/includes/menulateral.php');
-    include_once ('Source/Core/Helpers.php');
+
+    // Verifica se o parâmetro "busca" foi passado
+    if (isset($_GET['busca'])) {
+        $busca = $_GET['busca'];
+
+        // Simula dados para cada opção selecionada
+        switch ($busca) {
+            case 'Antonio':
+                echo "Dados do usuário Antonio: Plantão de segunda a sexta.";
+                break;
+            case 'Joana':
+                echo "Dados da usuária Joana: Plantão de quarta a sexta.";
+                break;
+            case 'Carlos':
+                echo "Dados do usuário Carlos: Plantão de segunda a quarta.";
+                break;
+            default:
+                echo "Usuário não encontrado.";
+        }
+    } else {
+        echo "Nenhum parâmetro de busca foi informado.";
+    }
+
+    include_once('tema/admin/includes/menulateral.php');
+    include_once('Source/Core/Helpers.php');
     ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -121,15 +178,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="form-plantao">
-                                    <div class="form-group">
-                                        <label for="escala_plantao">Escala</label>
-                                        <select class="form-control" id="funcionario_remanejado"
-                                            name="funcionario_remanejado" required>
-                                            <option value="Sim">Sim</option>
-                                            <option value="Não">Não</option>
-                                        </select>
-                                    </div>
+                                <form action="index.php?c=plantao&a=cadastro" method="post" id="form-plantao">
                                     <div class="form-group">
                                         <label for="unidade_escala">Unidade</label>
                                         <select class="form-control" id="unidade_escala" name="idUnidade">
@@ -162,6 +211,25 @@
                                                     ?>
                                                     <option value="<?php echo $row->idDepartamento; ?>">
                                                         <?php echo $row->nome_departamento; ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                            } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="escala_plantao">Escala</label>
+                                        <select class="form-control" id="funcionario_remanejado"
+                                            name="funcionario_remanejado" required>
+                                            <?php
+                                            if (isset($_SESSION['escala'])) {
+                                                $a = $_SESSION['escala'];
+                                                foreach ($a as $row) {
+                                                    $row = serialize($row);
+                                                    $row = unserialize($row);
+                                                    ?>
+                                                    <option value="<?php echo $row->idEscala; ?>">
+                                                        <?php echo $row->idEscala; ?>
                                                     </option>
                                                     <?php
                                                 }
