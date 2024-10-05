@@ -69,7 +69,7 @@
     <?php
 
     // Verifica se o parâmetro "busca" foi passado
-    if (isset($_GET['busca'])) {
+    /*if (isset($_GET['busca'])) {
         $busca = $_GET['busca'];
 
         // Simula dados para cada opção selecionada
@@ -88,7 +88,7 @@
         }
     } else {
         echo "Nenhum parâmetro de busca foi informado.";
-    }
+    }*/
 
     include_once('tema/admin/includes/menulateral.php');
     include_once('Source/Core/Helpers.php');
