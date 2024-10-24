@@ -63,17 +63,9 @@
                 <h1>Crie sua Conta</h1>
                 <!-- Título do formulário de registro -->
                 <div class="social-icons">
-                    <!-- Div para ícones de redes sociais -->
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <!-- Link para registro com Google Plus (ícone) -->
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <!-- Link para registro com Facebook (ícone) -->
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <!-- Link para registro com GitHub (ícone) -->
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <!-- Link para registro com LinkedIn (ícone) -->
+                    
                 </div>
-                <span>ou use seu e-mail para cadastro</span>
+                <span>Use seu e-mail para cadastro</span>
                 <!-- Texto indicando outra opção de registro -->
                 <input type="text" placeholder="Nome" name="nome">
                 <!-- Campo de entrada para o nome -->
@@ -95,15 +87,7 @@
                 <h1>Entrar</h1>
                 <!-- Título do formulário de login -->
                 <div class="social-icons">
-                    <!-- Div para ícones de redes sociais -->
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <!-- Link para login com Google Plus (ícone) -->
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <!-- Link para login com Facebook (ícone) -->
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <!-- Link para login com GitHub (ícone) -->
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <!-- Link para login com LinkedIn (ícone) -->
+                    
                 </div>
                 <span>ou use sua e-mail e senha</span>
                 <!-- Texto indicando outra opção de login -->

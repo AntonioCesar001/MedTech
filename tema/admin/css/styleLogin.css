@@ -91,7 +91,7 @@ body{
 
 /* Estilo para botões dentro do contêiner */
 .container button{
-    background-color: #512da8; /* Cor de fundo */
+    background-color: #50c878; /* Cor de fundo */
     color: #fff; /* Cor do texto */
     font-size: 12px; /* Tamanho da fonte */
     padding: 10px 45px; /* Padding */
@@ -219,9 +219,9 @@ body{
 
 /* Estilo para a alternância */
 .toggle{
-    background-color: #512da8; /* Cor de fundo */
+    background-color: #50c878; /* Cor de fundo */
     height: 100%; /* Altura total */
-    background: linear-gradient(to right, #5c6bc0, #512da8); /* Gradiente de fundo */
+    background: linear-gradient(to right, #4f9c97, #50c878); /* Gradiente de fundo */
     color: #fff; /* Cor do texto */
     position: relative; /* Posicionamento relativo */
     left: -100%; /* Inicialmente fora da tela */
