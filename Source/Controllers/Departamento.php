@@ -101,7 +101,6 @@ class Departamento
     //Retorna a tela de registro 
     return $this->viewRegister();
   }
-
   public function viewAll()
   {
     if (isset($_SESSION['usuario'])) {
