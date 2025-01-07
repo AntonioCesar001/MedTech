@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual do Usuário - Medtech</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Índice</h2>
+        <a href="#introducao" data-bs-toggle="tooltip" data-bs-placement="right" title="Saiba mais sobre a introdução do sistema">1. Introdução</a>
+        <a href="#acesso-plataforma" data-bs-toggle="tooltip" data-bs-placement="right" title="Informações sobre como acessar o sistema">2. Acesso à Plataforma</a>
+        <a href="#painel-principal" data-bs-toggle="tooltip" data-bs-placement="right" title="Explicação do painel principal">3. Painel Principal</a>
+        <a href="#menu-lateral" data-bs-toggle="tooltip" data-bs-placement="right" title="Descrição do menu lateral">4. Menu Lateral</a>
+        <a href="#gerenciamento-leitos" data-bs-toggle="tooltip" data-bs-placement="right" title="Como gerenciar leitos na aplicação">5. Gerenciamento de Leitos</a>
+        <a href="#como-gerenciar" data-bs-toggle="tooltip" data-bs-placement="right" title="Gerencie informações essenciais">6. Como Gerenciar Informações</a>
+        <a href="#boas-praticas" data-bs-toggle="tooltip" data-bs-placement="right" title="Sugestões de boas práticas">7. Boas Práticas</a>
+        <a href="#faq" data-bs-toggle="tooltip" data-bs-placement="right" title="Perguntas frequentes">8. FAQ</a>
+        <a href="#suporte" data-bs-toggle="tooltip" data-bs-placement="right" title="Obtenha suporte técnico">9. Suporte</a>
+        <a href="#versao-sistema" data-bs-toggle="tooltip" data-bs-placement="right" title="Versão atual do sistema">10. Versão do Sistema</a>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="content">
+        <h1>Manual do Usuário - Aplicação Medtech</h1>
+
+        <section id="introducao" class="section">
+            <h2>1. Introdução</h2>
+            <p>Bem-vindo ao sistema <strong>Medtech</strong>, desenvolvido para facilitar o gerenciamento de clínicas e hospitais. Este manual segue os princípios de <strong>Interação Humano-Computador</strong>, garantindo uma experiência acessível e intuitiva.</p>
+            <div class="tooltip-highlight">
+                <strong>Dica:</strong> Use o menu lateral para navegar rapidamente entre as seções.
+            </div>
+        </section>
+
+        <section id="acesso-plataforma" class="section">
+            <h2>2. Acesso à Plataforma</h2>
+            <p>Após o login bem-sucedido na plataforma, você será redirecionado para a página principal, que é composta por um menu lateral e um painel principal com widgets de fácil compreensão, permitindo que o usuário visualize informações chave de forma intuitiva.
+            </p>
+            <p>Para acessar o sistema, siga estas etapas:</p>
+            <ul>
+                <li>Insira seu nome de usuário e senha.</li>
+                <li>Clique em "Entrar".</li>
+                <li>Se esquecer sua senha, utilize a opção "Esqueci minha senha". Você será redirecionado para uma página onde poderá inserir seu e-mail cadastrado para receber instruções de redefinição de senha.</li>
+                <li>Se ainda não possui uma conta, clique em "Registrar-se" e siga as instruções para criar uma nova conta.</li>
+            </ul>
+            <img src="img/tela_login.png" alt="Tela de Login">
+
+            <h2>2.1 Acesso a opção "Registrar-se"</h2>
+            <p>Para criar uma nova conta, siga estas etapas:</p>
+            <ul>
+                <li>Seus dados pessoais serão solicitados para completar o processo de cadastro.</li>
+                <li>Insira seu nome de usuário.</li>
+                <li>Insira seu email.</li>
+                <li>Insira seu telefone.</li>
+                <li>Insira seu senha.</li>
+                <li>Clique em "Registrar-se".</li>
+                <br>
+                <!-- Bloco de Registro -->
+                <div style="flex: 1; margin-left: 15px; padding: 20px; background-color: #f1f1f1; border-radius: 10px;">
+                  <h3 style="text-align: center; color: #333;">Crie sua Conta</h3>
+                  <p style="text-align: center; color: #555;">Use seu e-mail para cadastro</p>
+                  <form style="display: flex; flex-direction: column; gap: 15px;">
+                    <input type="text" placeholder="Nome" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <input type="email" placeholder="Email" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <input type="text" placeholder="Telefone" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <input type="password" placeholder="Senha" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <button type="submit" style="padding: 10px 20px; background-color: #2a8c4a; color: #fff; border: none; border-radius: 5px; cursor: pointer;">REGISTRAR-SE</button>
+                  </form>
+                </div>
+        </section>
+
+        <section id="painel-principal" class="section">
+            <h2>3. Painel Principal</h2>
+            <p>O Painel Principal oferece uma visão geral da operação hospitalar, apresentando dados sumarizados sobre departamentos, funcionários, relatórios, escalas e leitos.
+            </p>
+            <ul>
+                <li>Gráficos de desempenho</li>
+                <li>Informações sobre leitos</li>
+                <li>Relatórios rápidos</li>
+                <li>Notificação</li>
+            </ul>
+            <img src="img/painel_principal.png" alt="Painel Principal">
+            <div id="departamentos-inseridos" class="section-child">
+                <h3>3.1 Departamentos Inseridos</h3>
+                <p>Essa seção mostra o número total de <strong>departamentos</strong> cadastrados na unidade. A quantidade de departamentos é importante para o controle organizacional da instituição.</p>
+                <ul>
+                    <li><strong>Ícone:</strong> Estetoscópio.</li>
+                    <li><strong>Legenda:</strong> Informa que 20 departamentos foram inseridos na unidade.</li>
+                    <li><strong>Link:</strong>"Mais informações" para obter detalhes adicionais sobre os departamentos.</li>
+                </ul>
+            </div>
+            <div id="relatorios-detalhados" class="section-child">
+                <h3>3.2 Relatórios Detalhados</h3>
+                <p>Exibe a porcentagem de relatórios já gerados no sistema. No exemplo, 100% dos relatórios foram gerados e estão prontos para consulta.</p>
+                <ul>
+                    <li><strong>Ícone:</strong> Relatório.</li>
+                    <li><strong>Legenda:</strong> 100% dos relatórios foram gerados e estão prontos para consulta.</li>
+                    <li><strong>Link:</strong>"Mais informações" para obter detalhes adicionais sobre os relatórios.</li>
+                </ul>
+            </div>
+            <div id="funcionarios-cadastrados" class="section-child">
+                <h3>3.3 Funcionários Cadastrados</h3>
+                <p>Mostra o número total de <strong>funcionários cadastrados no sistema</strong>. Essa seção facilita o controle sobre o quadro de pessoal, ajudando na distribuição de plantões e escalas.</p>
+                <ul>
+                    <li><strong>Ícone:</strong> Pessoa.</li>
+                    <li><strong>Legenda:</strong> 7 funcionários cadastrados.</li>
+                    <li><strong>Link:</strong>"Mais informações" para obter detalhes adicionais sobre os funcionários.</li>
+                </ul>
+            </div>
+            <div id="escala-do-dia" class="section-child">
+                <h3>3.4 Escala do Dia</h3>
+                <p>Essa seção mostra a <strong>escala diária</strong> dos funcionários. Se não houver uma escala cadastrada, será exibido "0".</p>
+                <ul>
+                    <li><strong>Ícone:</strong> Calendário.</li>
+                    <li><strong>Legenda:</strong> 0 escalas cadastradas.</li>
+                    <li><strong>Link:</strong>"Mais informações" para obter detalhes adicionais sobre a escala do dia.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="menu-lateral" class="section">
+            <h2>4. Menu Lateral</h2>
+            <p>O <strong>menu lateral</strong>, localizado à esquerda da tela, contém todas as opções necessárias para navegação e gerenciamento dos recursos da aplicação. Cada módulo representa uma funcionalidade chave:</p>
+            <img src="img/menu_lateral.png" alt="Menu Lateral" style="display: block; margin: 20px auto; max-width: 100%; border-radius: 5px;">
+            <div id="relatorio" class="section-child">
+                <h3>4.1 Relatório</h3>
+                <p>Acesse os relatórios gerados pela unidade. Esses relatórios podem ser detalhados e filtrados por datas, funcionários, departamentos ou plantões. Para emitir um relatório, selecione o tipo de relatório desejado, defina os filtros necessários e clique em "Gerar Relatório".</p>
+            </div>
+            <div id="unidade" class="section-child">
+                <h3>4.2 Unidade</h3>
+                <p>Permite o cadastro, edição e exclusão de <strong>unidades hospitalares</strong>. Para cadastrar uma nova unidade, clique em "Adicionar Unidade", preencha os campos necessários e salve. Para editar ou excluir uma unidade, selecione a unidade desejada e utilize as opções de edição ou exclusão.</p>
+            </div>
+            <div id="departamento" class="section-child">
+                <h3>4.3 Departamento</h3>
+                <p>Gerencia os <strong>departamentos</strong> da instituição (como enfermaria, UTI, pediatria, etc.). Para cadastrar um novo departamento, clique em "Adicionar Departamento", preencha os campos necessários e salve. Para associar um departamento a uma unidade, selecione a unidade desejada e adicione o departamento.</p>
+            </div>
+            <div id="funcionario" class="section-child">
+                <h3>4.4 Funcionário</h3>
+                <p>No módulo <strong>Funcionário</strong>, você pode cadastrar e gerenciar todos os funcionários da instituição, como médicos, enfermeiros, administradores, entre outros. Para cadastrar um novo funcionário, clique em "Adicionar Funcionário", preencha os campos necessários e salve.</p>
+            </div>
+            <div id="plantao" class="section-child">
+                <h3>4.5 Plantão</h3>
+                <p><strong>Gerenciar plantões</strong> de forma simples e eficiente. Para distribuir plantões, selecione o funcionário e defina os turnos de trabalho. Para acompanhar os plantões, utilize a visualização de plantões para verificar a cobertura de todos os setores.</p>
+            </div>
+            <div id="escala" class="section-child">
+                <h3>4.6 Escala</h3>
+                <p>Esse módulo permite organizar e visualizar a <strong>escala de trabalho</strong> dos funcionários em uma visualização diária, semanal ou mensal. Para organizar a escala, selecione o funcionário e defina os turnos de trabalho. Para monitorar a escala, utilize a visualização de escala para verificar a distribuição dos turnos.</p>
+            </div>
+        </section>
+
+        <section id="gerenciamento-leitos" class="section">
+            <h2>5. Gerenciamento de Leitos</h2>
+            <p>O módulo de gerenciamento de leitos permite visualizar, em tempo real, a ocupação hospitalar, incluindo a quantidade total de leitos, os leitos ocupados e os disponíveis. Essa ferramenta é essencial para o controle eficaz da capacidade e para garantir uma gestão hospitalar eficiente.</p>
+            <img src="img/painel_gerenciamento.png" alt="Gerenciamento de Leitos">
+            <strong>Descrição:</strong> Este gráfico de pizza representa a ocupação dos leitos na unidade.
+            <br><br>
+            <strong>Seções do Gráfico:</strong>
+            
+            <ul> 
+                <li><strong>Leito Disponível</strong>: Representado pela cor verde.
+                </li> <li><strong>Ocupação de Leitos</strong>: Representado pela cor vermelha.
+                </li> <li><strong>Leitos Livres</strong>: Representado pela cor amarela.</li> 
+            </ul>
+            <strong>Legenda:</strong> A legenda abaixo do gráfico indica as cores correspondentes a cada status de leito.
+        </section>
+
+        <section id="como-gerenciar" class="section">
+            <h2>6. Como Gerenciar Informações</h2>
+            <p>Para gerenciar informações, acesse os módulos apropriados no menu lateral e:</p>
+            <ul>
+                <li>Edite dados existentes.</li>
+                <li>Atualize as informações de plantões e leitos.</li>
+            </ul>
+            <div id="relatorios" class="section-child">
+                <h3>6.1 Relatórios</h3>
+                <p>Para gerenciar os relatórios, acesse a aba "Relatório" no menu lateral. Escolha o relatório desejado, selecione o período de tempo e os filtros desejados, e clique em "Gerar Relatório".</p>
+                <img src="img/visualizar_relatorio.png" alt="Relatórios">
+            </div>
+            <div id="unidades" class="section-child">
+                <h3>6.2 Unidades</h3>
+                <p>Gerencie as unidades acessando o menu "Unidade", onde você pode adicionar, editar ou remover unidades hospitalares cadastradas. Para cadastrar uma nova unidade, clique em "Adicionar Unidade", preencha os campos necessários e salve.</p>
+                <img src="img/unidades.png" alt="Unidades">
+            </div>
+            <div id="departamentos" class="section-child">
+                <h3>6.3 Departamentos</h3>
+                <p>Os departamentos podem ser gerenciados na aba "Departamento", onde você pode cadastrar novos departamentos e associá-los às respectivas unidades. Para cadastrar um novo departamento, clique em "Adicionar Departamento", preencha os campos necessários e salve.</p>
+                <img src="img/departamentos.png" alt="Departamentos">
+            </div>
+            <div id="funcionarios" class="section-child">
+                <h3>6.4 Funcionários</h3>
+                <p>No menu "Funcionário", você pode cadastrar e gerenciar informações detalhadas dos funcionários. Para cadastrar um novo funcionário, clique em "Adicionar Funcionário", preencha os campos necessários e salve.</p>
+                <img src="img/funcionario.png" alt="Funcionários">
+            </div>
+            <div id="plantao" class="section-child">
+                <h3>6.5 Plantão</h3>
+                <p>A organização dos plantões pode ser feita através da aba "Plantão". Aqui, é possível visualizar e editar os turnos de trabalho dos funcionários. Para distribuir plantões, selecione o funcionário e defina os turnos de trabalho.</p>
+                <img src="img/plantao.png" alt="Plantão">
+            </div>
+            <div id="escalas" class="section-child">
+                <h3>6.6 Escalas</h3>
+                <p>Gerencie as escalas de trabalho através da aba "Escala", onde você pode definir a distribuição dos turnos de cada funcionário. Para organizar a escala, selecione o funcionário e defina os turnos de trabalho.</p>
+                <img src="img/escala2.png" alt="Escalas">
+            </div>
+        </section>
+
+        <section id="boas-praticas" class="section">
+            <h2>7. Boas Práticas</h2>
+            <p>Recomendamos manter os dados de funcionários, departamentos, escalas e leitos sempre atualizados, além de revisar os relatórios periodicamente. Essas práticas garantem a eficiência do sistema e contribuem para uma gestão hospitalar mais organizada.</p>
+        </section>
+
+        <section id="faq" class="section">
+            <h2>8. Perguntas Frequentes (FAQ)</h2>
+            <h3>Como redefinir minha senha?</h3>
+            <img src="img/esqueceu_senha.jpg" alt="esqueceu_senha">
+            <p>Caso tenha esquecido sua senha, siga estas etapas para redefini-la com segurança:</p>
+            <ol>
+                <li>Na página de login, clique na opção <strong>"Esqueci minha senha"</strong>.</li>
+                <li>Insira o e-mail cadastrado no sistema e confirme.</li>
+                <li>Verifique sua caixa de entrada (ou pasta de spam) para encontrar o e-mail de redefinição enviado pelo sistema.</li>
+                <li>Clique no link fornecido no e-mail, que o redirecionará para a página de redefinição de senha.</li>
+                <li>Crie uma nova senha seguindo os requisitos de segurança indicados, como o uso de letras maiúsculas, números e caracteres especiais.</li>
+                <li>Confirme a nova senha e salve as alterações.</li>
+            </ol>
+            <p><strong>Nota:</strong> Se não receber o e-mail dentro de alguns minutos, entre em contato com o suporte técnico através de <a href="mailto:suporte@medtech.com">suporte@medtech.com</a> para assistência.</p>
+            <h3>Como cadastrar um novo funcionário?</h3>
+            <p>Para cadastrar um novo funcionário, siga estas etapas:</p>
+            <ol>
+                <li>Acesse o menu "Funcionário".</li>
+                <li>Clique em "Adicionar Funcionário".</li>
+                <li>Preencha os campos necessários com as informações do funcionário.</li>
+                <li>Clique em "Salvar" para cadastrar o novo funcionário.</li>
+            </ol>
+            <h3>Como gerar um relatório?</h3>
+            <p>Para gerar um relatório, siga estas etapas:</p>
+            <ol>
+                <li>Acesse o menu "Relatório".</li>
+                <li>Selecione o tipo de relatório desejado.</li>
+                <li>Defina os filtros necessários, como datas, funcionários, departamentos ou plantões.</li>
+                <li>Clique em "Gerar Relatório".</li>
+            </ol>
+        </section>
+
+        <section id="suporte" class="section">
+            <h2>9. Suporte</h2>
+            <p>Para suporte técnico ou dúvidas, entre em contato com a equipe de suporte da Medtech pelo e-mail <a href="mailto:suporte@medtech.com">suporte@medtech.com</a>. Nossa equipe está à disposição para ajudá-lo com quaisquer questões técnicas, operacionais ou relacionadas ao uso do sistema.</p>
+        </section>
+
+        <section id="versao-sistema" class="section">
+            <h2>10. Versão do Sistema</h2>
+            <p>Versão atual: 1.0.0 da Plataforma Medtech. Atualizações regulares estão disponíveis para melhorias contínuas.</p>
+        </section>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Medtech. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Inicializa tooltips no menu
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
+</body>
+</html>
